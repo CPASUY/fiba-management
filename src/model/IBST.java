@@ -1,14 +1,10 @@
 package model;
 
-public interface IBST<K extends Comparable<K>, V>  {
+public interface IBST<K,V extends Comparable <V>> {
 
 	public void insertE(K key, V value);
-	public boolean removeE(K key);
+	public void insertE(Node<K,V>n1,Node<K,V>n2);
 	public Node<K,V> getRoot();
-	public V searchE(K key);
-	public int getSize();
-	public int getHeight();
-	public String inOrden();
-	public String postOrden();
-	public String preOrden();
+	public Node<K,V> searchE(V value);
+	public Node<K,V> searchE(Node <K,V> n,V value);
 }

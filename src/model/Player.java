@@ -3,6 +3,7 @@ package model;
 public class Player {
 
 	String name;
+	String last_name;
 	int age;
 	String team;
 	int pointsPerGame;
@@ -11,8 +12,9 @@ public class Player {
 	int robberiesPerGame;
 	int blocksPerGame;
 	
-	public Player(String name,int age,String team, int points,int rebounds,int assists,int robberies, int blocks) {
+	public Player(String name,String last_name,int age,String team, int points,int rebounds,int assists,int robberies, int blocks) {
 		this.name = name;
+		this.last_name=last_name;
 		this.age = age;
 		this.team = team;
 		pointsPerGame = points;
@@ -24,6 +26,10 @@ public class Player {
 	
 	public String getName() {
 		return name;
+	}
+	
+	public String getLast_Name() {
+		return last_name;
 	}
 	
 	public int getAge() {
