@@ -1,7 +1,9 @@
 package model;
 
 public class BST<K extends Comparable<K>, V> implements IBST<K,V>{
-
+	
+	K player;
+	
 	@Override
 	public void insertE(K key, V value) {
 		// TODO Auto-generated method stub
