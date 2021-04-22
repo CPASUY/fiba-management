@@ -49,10 +49,27 @@ public class AVL<K extends Comparable<K>, V> extends BST<K, V> implements IAVL<K
 	
 	@Override
 	public void rebalance() {
-		// TODO Auto-generated method stub
-
+		rebalance(getRoot());
 	}
 
+	private void rebalance(Node<K,V> node) {
+		if(node.getBFactor()==-2) {
+			Node<K,V> left = node.getLeft();
+			if(left.getBFactor()!=2 && left.getBFactor()!=-2) {
+				rightRotate(node);
+			}else {
+				rebalance(left);
+			}
+		}else if (node.getBFactor()==2){
+			Node<K,V> right = node.getRight();
+			if(right.getBFactor()!=2 && right.getBFactor()!=-2) {
+				leftRotate(node);
+			}else {
+				rebalance(right);
+			}
+		}
+	}
+	
 	@Override
 	public void leftRotate(Node<K, V> node) {
 		// TODO Auto-generated method stub
