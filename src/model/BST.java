@@ -4,6 +4,10 @@ public class BST<K,V extends Comparable <V>> implements IBST<K,V>{
 	
 	Node<K,V> root;
 	
+	public void setRoot(Node<K,V> root) {
+		this.root = root;
+	}
+	
 	@Override
 	public void insertE(K key, V value) {
 		Node<K,V> node= new Node<K,V>(key,value);
