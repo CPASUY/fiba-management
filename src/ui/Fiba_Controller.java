@@ -25,6 +25,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
+import model.AVL;
+import model.BST;
 import model.Player;
 
 public class Fiba_Controller {
@@ -34,6 +36,8 @@ public class Fiba_Controller {
 	private BorderPane basePane;
 	private Stage stage;
 	private Player p;
+	private AVL<String,Integer>[] avls;
+	private BST<String,Integer> bst;
 	@FXML
 	private TableView<Player> tablePlayers;
 
@@ -66,7 +70,8 @@ public class Fiba_Controller {
 
 	public Fiba_Controller(Stage s) throws IOException, CsvException {
 		stage=s;
-		
+		avls = null;
+		bst = null;
 	}
 	public void initialize() {
 		stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
@@ -127,12 +132,33 @@ public class Fiba_Controller {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		int columns = 0;
-		while(columns != 9) {
-			for(int i = 1;i<20;i++) {
-				System.out.print(allData.get(i)[columns]);
+		fillAVL(allData,2,4);
+		fillBST(allData,2,4);
+		
+	}
+	
+	void fillAVL(List<String[]> values,int startColum,int finishColum) {
+		int columns = startColum;
+		int index = 0;
+		AVL<String, Integer> temp = new AVL<String,Integer>();
+		while(columns != finishColum ) {
+			for(int i = 1;i<200000;i++) {
+				temp.insertE(values.get(i)[columns], i);
 			}
-		System.out.println();
+		avls[index] = temp;
+		index++;
+		columns++;
+		}
+	}
+	
+	void fillBST(List<String[]> values,int startColum,int finishColum) {
+		int columns = startColum;
+		BST<String, Integer> temp = new BST<String,Integer>();
+		while(columns != finishColum ) {
+			for(int i = 1;i<200000;i++) {
+				temp.insertE(values.get(i)[columns], i);
+			}
+		bst = temp;
 		columns++;
 		}
 	}
