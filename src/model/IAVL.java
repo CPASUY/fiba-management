@@ -1,6 +1,6 @@
 package model;
 
-public interface IAVL<K extends Comparable<K>,V> extends IBST<K, V> {
+public interface IAVL<K,V extends Comparable <V>> extends IBST<K, V> {
 
 	public void insertE(K key, V value);
 	public boolean removeE(K key);
