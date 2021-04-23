@@ -19,16 +19,19 @@ public class BST<K extends Comparable <K>,V extends Comparable <V>> implements I
 	}
 	@Override
 	public void insertE(Node<K,V> root,Node<K,V> newNode) {
-		if(newNode.getValor().compareTo(root.getValor())<=0	&&	root.getLeft()==null) {
-			root.setLeft(newNode);
-			newNode.setFather(root);
-		}else if(newNode.getValor().compareTo(root.getValor())>0 && root.getRight()==null) {
-			root.setRight(newNode);
-			newNode.setFather(root);
-		}else {
-			if(newNode.getValor().compareTo(root.getValor())<=0 && root.getLeft()!= null) {
+		if(newNode.getValor().compareTo(root.getValor())<=0	) {
+			if (root.getLeft() == null) {
+				root.setLeft(newNode);
+				root.getLeft().setFather(root);
+			} else {
 				insertE(root.getLeft(),newNode);
-			}else {
+			}
+		}else {
+
+			if (root.getRight() == null) {
+				root.setRight(newNode);
+				root.getRight().setFather(root);
+			} else {
 				insertE(root.getRight(),newNode);
 			}
 		}
@@ -40,7 +43,7 @@ public class BST<K extends Comparable <K>,V extends Comparable <V>> implements I
 	}
 
 	@Override
-	public Node<K,V> searchE(V value) {
+	public Node<K,V> searchE(K value) {
 		if(root==null) {
 			return null;
 		}else {
@@ -48,7 +51,7 @@ public class BST<K extends Comparable <K>,V extends Comparable <V>> implements I
 		}
 	}
 	@Override
-	public Node<K,V> searchE(Node<K,V> root,V value){
+	public Node<K,V> searchE(Node<K,V> root,K value){
 		if(root.getValor().compareTo(value)==0) {
 			return root;
 		}else if(root.getValor().compareTo(value)>0) {
