@@ -36,16 +36,6 @@ public class AVL<K extends Comparable<K>, V> extends BST<K, V> implements IAVL<K
 		}
 		refreshHeights(element.getFather());
 	}
-
-	@Override
-	public boolean removeE(V value) {
-		Node<K,V> node = searchE(value);
-		return removeE(node);
-	}
-
-	private boolean removeE(Node<K,V> node) {
-		
-	}
 	
 	@Override
 	public void rebalance() {
@@ -72,8 +62,51 @@ public class AVL<K extends Comparable<K>, V> extends BST<K, V> implements IAVL<K
 	
 	@Override
 	public void leftRotate(Node<K, V> node) {
-		// TODO Auto-generated method stub
-
+		Node<K,V> father = node.getFather();
+		Node<K,V> right = node.getRight();
+		
+		//Case C
+		if(right.getBFactor()==-1) { //Became in case A o B
+			rightRotate(right);
+			right = node.getRight();
+		}
+			
+		//Case A o B
+		
+		//Set right's father element as unbalanced's father.
+		
+		if(node.equals(getRoot())) {
+			right.setFather(null);
+			setRoot(right);
+		}else {
+			right.setFather(father);
+			if(father.getLeft()==node){
+				father.setLeft(right);
+			}else {
+				father.setRight(right);
+			}
+		}
+		
+		//if the node of the middle exist change of side.
+		Node<K,V> middle = right.getLeft();
+		if(middle!=null) {
+			node.setRight(middle);
+			node.setH2(middle.getH()+1); //Refresh Balance factor
+		}else {
+			node.setRight(null);
+			node.setH2(0);
+		}
+		
+		// Turn down the unbalanced node
+		right.setLeft(node);
+		right.setH1(node.getH()+1);
+		node.setFather(right);
+		
+		//Refresh Heights
+		refreshHeights(node.getFather());
+		if(node.getFather()!=null) {
+			refreshHeights(node.getFather().getFather());
+		}
 	}
 
 	@Override
