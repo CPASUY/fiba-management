@@ -24,6 +24,7 @@ public class Main extends Application {
 		primaryStage.setTitle("Fiba Management");
 		fb.initialize();
 		fb.loadBuscarJugadores();
+		fb.chargePlayers();
 	}
 
 }
