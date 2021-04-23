@@ -1,5 +1,5 @@
 package ui;
-<<<<<<< HEAD
+
 import com.opencsv.*;
 import com.opencsv.exceptions.CsvException;
 
@@ -7,11 +7,11 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.List;
-=======
+
 
 import java.io.IOException;
 import java.util.ArrayList;
->>>>>>> d90118be5ddbce5f1954e57ee9687429d6e99a9f
+
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -106,8 +106,7 @@ public class Fiba_Controller {
 	void buscar(){
 		loadBaseDeDatos();
 	}
-<<<<<<< HEAD
-	
+
 	void chargePlayers() {
 		FileReader filereader = null;
 		try {
@@ -129,13 +128,15 @@ public class Fiba_Controller {
 			e.printStackTrace();
 		}
 		int columns = 0;
-		while(columns != 8) {
-			for(int i = 0;i<200000;i++) {
+		while(columns != 9) {
+			for(int i = 1;i<20;i++) {
 				System.out.print(allData.get(i)[columns]);
 			}
+		System.out.println();
 		columns++;
 		}
-=======
+	}
+
 	public void loadPlayersList() {
     	basePane.setOnKeyPressed(null);
     	FXMLLoader fxmload = new FXMLLoader(getClass().getResource("Seccion1.fxml"));
@@ -162,6 +163,5 @@ public class Fiba_Controller {
 		idAssists.setCellValueFactory(new PropertyValueFactory<Player, Integer>("assistsPerGame"));
 		idRobberies.setCellValueFactory(new PropertyValueFactory<Player,Integer>("robberiesPerGame"));
 		idBlocks.setCellValueFactory(new PropertyValueFactory<Player,Integer>("blocksPerGame"));
->>>>>>> d90118be5ddbce5f1954e57ee9687429d6e99a9f
 	}
 }

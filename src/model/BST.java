@@ -1,10 +1,7 @@
 package model;
 
-<<<<<<< HEAD
+
 public class BST<K extends Comparable<K>,V extends Comparable <V>> implements IBST<K,V>{
-=======
-public class BST<K extends Comparable <K>,V extends Comparable <V>> implements IBST<K,V>{
->>>>>>> d90118be5ddbce5f1954e57ee9687429d6e99a9f
 	
 	Node<K,V> root;
 	
