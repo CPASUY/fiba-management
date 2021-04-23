@@ -1,10 +1,15 @@
 package model;
 public class AVL<K extends Comparable <K>,V extends Comparable <V>> extends BST<K,V> implements IAVL<K,V> {
 
+<<<<<<< HEAD
+public class AVL<K extends Comparable<K>,V extends Comparable <V>> extends BST<K, V> implements IAVL<K, V> {
+
+=======
 	public AVL() {
 		super();
 	}
 	
+>>>>>>> d90118be5ddbce5f1954e57ee9687429d6e99a9f
 	@Override
 	public void insertE(K key, V value) {
 		Node<K, V> element = new Node<K, V>(key, value);

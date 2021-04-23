@@ -1,7 +1,17 @@
 package ui;
+<<<<<<< HEAD
+import com.opencsv.*;
+import com.opencsv.exceptions.CsvException;
+
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.List;
+=======
 
 import java.io.IOException;
 import java.util.ArrayList;
+>>>>>>> d90118be5ddbce5f1954e57ee9687429d6e99a9f
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -19,7 +29,7 @@ import model.Player;
 
 public class Fiba_Controller {
 	//Constant
-	public static final String PLAYERS_FILE_NAME="data/DataPlayers.bbd";
+	public static final String PLAYERS_FILE_NAME="data/DataPlayers.csv";
 	@FXML
 	private BorderPane basePane;
 	private Stage stage;
@@ -54,8 +64,9 @@ public class Fiba_Controller {
 	@FXML
 	private TableColumn<Player, Integer> idBlocks;
 
-	public Fiba_Controller(Stage s) throws IOException {
+	public Fiba_Controller(Stage s) throws IOException, CsvException {
 		stage=s;
+		
 	}
 	public void initialize() {
 		stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
@@ -95,6 +106,36 @@ public class Fiba_Controller {
 	void buscar(){
 		loadBaseDeDatos();
 	}
+<<<<<<< HEAD
+	
+	void chargePlayers() {
+		FileReader filereader = null;
+		try {
+			filereader = new FileReader(PLAYERS_FILE_NAME);
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		CSVParser parser = new CSVParserBuilder().withSeparator(',').build();
+		CSVReader csvReader = new CSVReaderBuilder(filereader).withCSVParser(parser).build();
+		List<String[]> allData = null;
+		try {
+			allData = csvReader.readAll();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (CsvException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		int columns = 0;
+		while(columns != 8) {
+			for(int i = 0;i<200000;i++) {
+				System.out.print(allData.get(i)[columns]);
+			}
+		columns++;
+		}
+=======
 	public void loadPlayersList() {
     	basePane.setOnKeyPressed(null);
     	FXMLLoader fxmload = new FXMLLoader(getClass().getResource("Seccion1.fxml"));
@@ -121,5 +162,6 @@ public class Fiba_Controller {
 		idAssists.setCellValueFactory(new PropertyValueFactory<Player, Integer>("assistsPerGame"));
 		idRobberies.setCellValueFactory(new PropertyValueFactory<Player,Integer>("robberiesPerGame"));
 		idBlocks.setCellValueFactory(new PropertyValueFactory<Player,Integer>("blocksPerGame"));
+>>>>>>> d90118be5ddbce5f1954e57ee9687429d6e99a9f
 	}
 }
