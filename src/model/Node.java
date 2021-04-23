@@ -1,8 +1,8 @@
 package model;
 
 public class Node<K extends Comparable <K>,V extends Comparable <V>> {
-	K indice;
-	V valor;
+	K valor;
+	V indice;
 	Node<K,V> father;
 	Node<K,V> left;
 	Node<K,V> right;
@@ -26,21 +26,23 @@ public class Node<K extends Comparable <K>,V extends Comparable <V>> {
 	public void setRight(Node<K, V> right) {
 		this.right = right;
 	}
-	public Node(K indice, V valor) {
-		this.indice = indice;
+
+	public Node(K valor, V indice) {
+		super();
 		this.valor = valor;
-	}
-	public K getIndice() {
-		return indice;
-	}
-	public void setIndice(K indice) {
 		this.indice = indice;
 	}
-	public V getValor() {
+	public K getValor() {
 		return valor;
 	}
-	public void setValor(V valor) {
+	public void setValor(K valor) {
 		this.valor = valor;
+	}
+	public V getIndice() {
+		return indice;
+	}
+	public void setIndice(V indice) {
+		this.indice = indice;
 	}
 	public int getH1() {
 		return h1;
