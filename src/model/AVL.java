@@ -111,8 +111,50 @@ public class AVL<K extends Comparable<K>, V> extends BST<K, V> implements IAVL<K
 
 	@Override
 	public void rightRotate(Node<K, V> node) {
-		// TODO Auto-generated method stub
-
+		Node<K,V> father = node.getFather();
+		Node<K,V> left = node.getLeft();
+		
+		//Case F
+		if(left.getBFactor()==1) { //Became in case D o E
+			leftRotate(left);
+			left = node.getLeft();
+		}
+		
+		//Case D o E
+		
+		//Set left's father element for unbalanced's father.
+		if(node.equals(getRoot())) {
+			left.setFather(null);
+			setRoot(left);
+		}else {
+			left.setFather(node.getFather());
+			if(father.getLeft()==node){
+				father.setLeft(left);
+			}else {
+				father.setRight(left);
+			}
+		}
+		
+		//if the node of the middle exist change of side.
+			Node<K,V> middle = left.getRight();
+			if(middle!=null) {
+				node.setLeft(middle);
+				node.setH1(middle.getH()+1); //Refresh Balance factor
+			}else {
+				node.setLeft(null);
+				node.setH1(0);
+			}
+			
+			// Turn down the unbalanced node
+			left.setRight(node);
+			left.setH2(node.getH()+1);
+			node.setFather(left);
+			
+			//Refresh Heights
+			refreshHeights(node.getFather());
+			if(node.getFather()!=null) {
+				refreshHeights(node.getFather().getFather());
+			}
 	}
 
 	private void refreshHeights(Node<K, V> node) {
