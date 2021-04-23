@@ -1,10 +1,5 @@
 package model;
-
-<<<<<<< HEAD
-public class AVL<K,V extends Comparable <V>> extends BST<K,V> implements IAVL<K,V> {
-=======
-public class AVL<K extends Comparable<K>, V> extends BST<K, V> implements IAVL<K, V> {
->>>>>>> 9ad580513a098b93215b71b08089e89ded9433ed
+public class AVL<K extends Comparable <K>,V extends Comparable <V>> extends BST<K,V> implements IAVL<K,V> {
 
 	public AVL() {
 		super();
