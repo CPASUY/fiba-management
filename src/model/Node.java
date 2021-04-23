@@ -1,6 +1,6 @@
 package model;
 
-public class Node<K,V extends Comparable <V>> {
+public class Node<K extends Comparable <K>,V extends Comparable <V>> {
 	K indice;
 	V valor;
 	Node<K,V> father;
