@@ -4,7 +4,8 @@ import java.util.ArrayList;
 
 public class BST<K extends Comparable<K>,V> implements IBST<K,V>{
 	private int weight;
-	private Node<K,V> root;
+	ArrayList <Node<K,V>> nodos;
+	protected Node<K,V> root;
 	
 	public BST() {
 		weight=0;
@@ -65,26 +66,11 @@ public class BST<K extends Comparable<K>,V> implements IBST<K,V>{
 		}			
 	}		
 	@Override
-	public Node<K,V> getMin(Node<K,V> node){
-		while(node.getLeft() != null) {
-			node = node.getLeft();
-		}
-		return node;	
-	}
-	@Override
-	public Node<K,V> getMax(Node<K,V> node){
-		while(node.getRight() != null) {
-			node = node.getRight();
-		}
-		return node;	
-	}
-	@Override
 	public ArrayList<V> searchEquals(K key) {
-		ArrayList<V> indices=new ArrayList<V>();
 		if(root != null) {	
-			 indices = searchEquals(key,root);
-			if(indices!= null) {
-				return indices;	
+			Node<K,V> node= searchEquals(key,root);
+			if(node.getValue()!= null) {
+				return node.getValue();	
 			} else {
 				return null;
 			}
@@ -94,58 +80,47 @@ public class BST<K extends Comparable<K>,V> implements IBST<K,V>{
 		}
 	}
 	@Override
-	public ArrayList<V> searchEquals( K key,Node<K, V> root) {
-		if(root != null) {
-			if(key.compareTo(root.getKey()) < 0) {	
-				return searchEquals(key, root.getLeft());		
-			} else if(key.compareTo(root.getKey()) >  0) {	
-				return searchEquals(key,root.getRight());
+	public Node<K, V> searchEquals(K key, Node<K, V> n) {
+		if(n!= null) {
+			if(key.compareTo(n.getKey()) < 0) {	
+				return searchEquals(key,n.getLeft());		
+			} else if(key.compareTo(n.getKey()) >  0) {	
+				return searchEquals(key,n.getRight());
 			} else {
-				return root.getValue();
+				return n;
 			}
 		} else {	
-
 			return null;
 		}		
 	}
 	@Override
-	public ArrayList<V> searchMore(K key) {
-		ArrayList<V> indices=new ArrayList<V>();
-		if(root != null) {	
-			 indices = searchMore(key,root);
-			if(indices!= null) {
-				return indices;	
-			} else {
-				return null;
+	public void inOrderLess(Node<K,V> node,K key) {
+		if (node != null) {
+			inOrderLess(node.getRight(),key);
+			if(node.getKey().compareTo(key)<=0) {
+				nodos.add(node);
+			}
+			inOrderLess(node.getLeft(),key);
+		}
+	}
+	@Override
+	public void inOrderMore(Node<K,V> node,K key) {
+		if (node != null) {
+			inOrderLess(node.getRight(),key);
+			if(node.getKey().compareTo(key)>=0) {
+				nodos.add(node);
+			}
+			inOrderLess(node.getLeft(),key);
+		}
+	}
+	@Override
+	public ArrayList<V> indices(){
+		ArrayList<V> i=new ArrayList<V>();
+		for(int s=0;s<nodos.size();s++) {
+			for(int m=0;m<nodos.get(s).getValue().size();m++) {
+				i.add(nodos.get(s).getValue().get(m));
 			}
 		}
-		else {
-			return null;
-		}
-	}
-	@Override
-	public ArrayList<V> searchMore(K key, Node<K, V> n) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	@Override
-	public ArrayList<V> searchLess(K key) {
-		ArrayList<V> indices=new ArrayList<V>();
-		if(root != null) {	
-			 indices = searchLess(key,root);
-			if(indices!= null) {
-				return indices;	
-			} else {
-				return null;
-			}
-		}
-		else {
-			return null;
-		}
-	}
-	@Override
-	public ArrayList<V> searchLess(K key, Node<K, V> n) {
-		// TODO Auto-generated method stub
-		return null;
+		return i;
 	}
 }
