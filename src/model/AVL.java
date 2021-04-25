@@ -42,7 +42,7 @@ public class AVL<K extends Comparable<K>,V extends Comparable <V>> extends BST<K
 				}
 			}
 		}
-		refreshHeights(element.getFather());
+		//refreshHeights(element.getFather());
 	}
 	
 	@Override

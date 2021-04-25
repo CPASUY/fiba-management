@@ -38,6 +38,8 @@ public class Fiba_Controller {
 	private Player p;
 	private AVL<String,Integer>[] avls;
 	private BST<String,Integer> bst;
+	private List<String[]> allData;
+	private final int QUANTITY_DATA = 200000;
 	@FXML
 	private TableView<Player> tablePlayers;
 
@@ -68,10 +70,12 @@ public class Fiba_Controller {
 	@FXML
 	private TableColumn<Player, Integer> idBlocks;
 
+
 	public Fiba_Controller(Stage s) throws IOException, CsvException {
 		stage=s;
-		avls = null;
+		avls = new AVL[2];
 		bst = null;
+		allData = null;
 	}
 	public void initialize() {
 		stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
@@ -122,7 +126,6 @@ public class Fiba_Controller {
 		}
 		CSVParser parser = new CSVParserBuilder().withSeparator(',').build();
 		CSVReader csvReader = new CSVReaderBuilder(filereader).withCSVParser(parser).build();
-		List<String[]> allData = null;
 		try {
 			allData = csvReader.readAll();
 		} catch (IOException e) {
@@ -132,8 +135,8 @@ public class Fiba_Controller {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		fillAVL(allData,2,4);
-		fillBST(allData,2,4);
+		fillAVL(allData,4,6);
+		fillBST(allData,6,7);
 		
 	}
 	
@@ -142,7 +145,7 @@ public class Fiba_Controller {
 		int index = 0;
 		AVL<String, Integer> temp = new AVL<String,Integer>();
 		while(columns != finishColum ) {
-			for(int i = 1;i<200000;i++) {
+			for(int i = 1;i<QUANTITY_DATA;i++) {
 				temp.insertE(values.get(i)[columns], i);
 			}
 		avls[index] = temp;
@@ -155,7 +158,7 @@ public class Fiba_Controller {
 		int columns = startColum;
 		BST<String, Integer> temp = new BST<String,Integer>();
 		while(columns != finishColum ) {
-			for(int i = 1;i<200000;i++) {
+			for(int i = 1;i<QUANTITY_DATA;i++) {
 				temp.insertE(values.get(i)[columns], i);
 			}
 		bst = temp;
