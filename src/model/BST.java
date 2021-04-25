@@ -1,15 +1,10 @@
 package model;
 
-<<<<<<< HEAD
+import java.util.ArrayList;
+
 public class BST<K extends Comparable<K>,V> implements IBST<K,V>{
 	private int weight;
 	private Node<K,V> root;
-=======
-
-public class BST<K extends Comparable<K>,V extends Comparable <V>> implements IBST<K,V>{
-	
-	Node<K,V> root;
->>>>>>> 1c9aaa4f4d9496e0ae59a2f7ccfbcf760c65b7ed
 	
 	public BST() {
 		weight=0;
@@ -70,22 +65,87 @@ public class BST<K extends Comparable<K>,V extends Comparable <V>> implements IB
 		}			
 	}		
 	@Override
-	public Node<K,V> searchE(K value) {
-		if(root==null) {
+	public Node<K,V> getMin(Node<K,V> node){
+		while(node.getLeft() != null) {
+			node = node.getLeft();
+		}
+		return node;	
+	}
+	@Override
+	public Node<K,V> getMax(Node<K,V> node){
+		while(node.getRight() != null) {
+			node = node.getRight();
+		}
+		return node;	
+	}
+	@Override
+	public ArrayList<V> searchEquals(K key) {
+		ArrayList<V> indices=new ArrayList<V>();
+		if(root != null) {	
+			 indices = searchEquals(key,root);
+			if(indices!= null) {
+				return indices;	
+			} else {
+				return null;
+			}
+		}
+		else {
 			return null;
-		}else {
-			return searchE(root,value);
 		}
 	}
 	@Override
-	public Node<K,V> searchE(Node<K,V> root,K value){
-		if(root.getValor().compareTo(value)==0) {
-			return root;
-		}else if(root.getValor().compareTo(value)>0) {
-			return searchE(root.getLeft(),value);
-		}else {
-			return searchE(root.getRight(),value);
+	public ArrayList<V> searchEquals( K key,Node<K, V> root) {
+		if(root != null) {
+			if(key.compareTo(root.getKey()) < 0) {	
+				return searchEquals(key, root.getLeft());		
+			} else if(key.compareTo(root.getKey()) >  0) {	
+				return searchEquals(key,root.getRight());
+			} else {
+				return root.getValue();
+			}
+		} else {	
+
+			return null;
+		}		
+	}
+	@Override
+	public ArrayList<V> searchMore(K key) {
+		ArrayList<V> indices=new ArrayList<V>();
+		if(root != null) {	
+			 indices = searchMore(key,root);
+			if(indices!= null) {
+				return indices;	
+			} else {
+				return null;
+			}
+		}
+		else {
+			return null;
 		}
 	}
-
+	@Override
+	public ArrayList<V> searchMore(K key, Node<K, V> n) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public ArrayList<V> searchLess(K key) {
+		ArrayList<V> indices=new ArrayList<V>();
+		if(root != null) {	
+			 indices = searchLess(key,root);
+			if(indices!= null) {
+				return indices;	
+			} else {
+				return null;
+			}
+		}
+		else {
+			return null;
+		}
+	}
+	@Override
+	public ArrayList<V> searchLess(K key, Node<K, V> n) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
