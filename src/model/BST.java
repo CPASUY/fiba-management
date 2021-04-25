@@ -48,7 +48,7 @@ public class BST<K extends Comparable<K>,V> implements IBST<K,V>{
 			Node<K,V> left =root.getLeft();
 			if(left != null) {	
 				insertE(left,newNode);
-				left.updateNode();	
+				left.modifiedNode();	
 			} else {		
 				root.setLeft(newNode);		
 				newNode.setFather(root);
@@ -58,7 +58,7 @@ public class BST<K extends Comparable<K>,V> implements IBST<K,V>{
 			Node<K,V> right = root.getRight();
 			if(right != null) {		
 				insertE(right,newNode);
-				right.updateNode();
+				right.modifiedNode();
 			} else {	
 				root.setRight(newNode);	
 				newNode.setFather(root);

@@ -5,10 +5,10 @@ import java.util.ArrayList;
 public class Node<K extends Comparable <K>,V>  {
 	private K key;
 	private ArrayList<V> value;
-	private Node<K,V> father;
-	private Node<K,V> left;
-	private Node<K,V> right;
-	private int height;
+	protected Node<K,V> father;
+	protected Node<K,V> left;
+	protected Node<K,V> right;
+	protected int height;
 	private int h1;
 	private int h2;
 	
@@ -62,10 +62,21 @@ public class Node<K extends Comparable <K>,V>  {
 		}
 		return min;
 	}
-	public void updateNode() {	
-		int lh =  left != null? left.height:0;
-		int rh =  right != null? right.height:0;
-		height = ((lh > rh)? lh : rh) + 1;
+	public void modifiedNode() {	
+		int leftH=0;
+		int rightH=0;
+		if(left!=null) {
+			leftH=left.height;
+		}
+		if(right!=null) {
+			rightH=right.height;
+		}
+		if(leftH>rightH) {
+			height=leftH+1;
+		}
+		else {
+			height=rightH+1;
+		}
 
 	}
 	public int getBFactor() {
