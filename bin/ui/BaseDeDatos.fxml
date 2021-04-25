@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.Pane?>
+
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="447.0" prefWidth="727.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <TableView fx:id="tablePlayers" layoutX="26.0" layoutY="86.0" prefHeight="292.0" prefWidth="678.0">
+        <columns>
+          <TableColumn fx:id="idName" prefWidth="75.0" text="Name" />
+          <TableColumn fx:id="idLast_Name" prefWidth="75.0" text="Last Name" />
+            <TableColumn fx:id="idAge" prefWidth="55.0" text="Age" />
+            <TableColumn fx:id="idTeam" prefWidth="95.0" text="Team" />
+            <TableColumn fx:id="idPoints" prefWidth="75.0" text="Points" />
+            <TableColumn fx:id="idRebounds" prefWidth="87.0" text="Rebounds" />
+            <TableColumn fx:id="idAssists" prefWidth="75.0" text="Assists" />
+            <TableColumn fx:id="idRobberies" prefWidth="75.0" text="Robberies" />
+            <TableColumn fx:id="idBlocks" prefWidth="75.0" text="Blocks" />
+        </columns>
+      </TableView>
+   </children>
+</Pane>

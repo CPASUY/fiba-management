@@ -1,5 +1,5 @@
 package ui;
-<<<<<<< HEAD
+
 import com.opencsv.*;
 import com.opencsv.exceptions.CsvException;
 
@@ -7,11 +7,11 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.List;
-=======
+
 
 import java.io.IOException;
 import java.util.ArrayList;
->>>>>>> d90118be5ddbce5f1954e57ee9687429d6e99a9f
+
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -25,6 +25,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
+import model.AVL;
+import model.BST;
 import model.Player;
 
 public class Fiba_Controller {
@@ -34,6 +36,8 @@ public class Fiba_Controller {
 	private BorderPane basePane;
 	private Stage stage;
 	private Player p;
+	private AVL<String,Integer>[] avls;
+	private BST<String,Integer> bst;
 	@FXML
 	private TableView<Player> tablePlayers;
 
@@ -66,7 +70,8 @@ public class Fiba_Controller {
 
 	public Fiba_Controller(Stage s) throws IOException, CsvException {
 		stage=s;
-		
+		avls = null;
+		bst = null;
 	}
 	public void initialize() {
 		stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
@@ -106,8 +111,7 @@ public class Fiba_Controller {
 	void buscar(){
 		loadBaseDeDatos();
 	}
-<<<<<<< HEAD
-	
+
 	void chargePlayers() {
 		FileReader filereader = null;
 		try {
@@ -128,14 +132,37 @@ public class Fiba_Controller {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		int columns = 0;
-		while(columns != 8) {
-			for(int i = 0;i<200000;i++) {
-				System.out.print(allData.get(i)[columns]);
+		fillAVL(allData,2,4);
+		fillBST(allData,2,4);
+		
+	}
+	
+	void fillAVL(List<String[]> values,int startColum,int finishColum) {
+		int columns = startColum;
+		int index = 0;
+		AVL<String, Integer> temp = new AVL<String,Integer>();
+		while(columns != finishColum ) {
+			for(int i = 1;i<200000;i++) {
+				temp.insertE(values.get(i)[columns], i);
 			}
+		avls[index] = temp;
+		index++;
 		columns++;
 		}
-=======
+	}
+	
+	void fillBST(List<String[]> values,int startColum,int finishColum) {
+		int columns = startColum;
+		BST<String, Integer> temp = new BST<String,Integer>();
+		while(columns != finishColum ) {
+			for(int i = 1;i<200000;i++) {
+				temp.insertE(values.get(i)[columns], i);
+			}
+		bst = temp;
+		columns++;
+		}
+	}
+
 	public void loadPlayersList() {
     	basePane.setOnKeyPressed(null);
     	FXMLLoader fxmload = new FXMLLoader(getClass().getResource("Seccion1.fxml"));
@@ -162,6 +189,5 @@ public class Fiba_Controller {
 		idAssists.setCellValueFactory(new PropertyValueFactory<Player, Integer>("assistsPerGame"));
 		idRobberies.setCellValueFactory(new PropertyValueFactory<Player,Integer>("robberiesPerGame"));
 		idBlocks.setCellValueFactory(new PropertyValueFactory<Player,Integer>("blocksPerGame"));
->>>>>>> d90118be5ddbce5f1954e57ee9687429d6e99a9f
 	}
 }

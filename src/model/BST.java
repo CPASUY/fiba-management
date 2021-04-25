@@ -1,8 +1,15 @@
 package model;
 
+<<<<<<< HEAD
 public class BST<K extends Comparable<K>,V> implements IBST<K,V>{
 	private int weight;
 	private Node<K,V> root;
+=======
+
+public class BST<K extends Comparable<K>,V extends Comparable <V>> implements IBST<K,V>{
+	
+	Node<K,V> root;
+>>>>>>> 1c9aaa4f4d9496e0ae59a2f7ccfbcf760c65b7ed
 	
 	public BST() {
 		weight=0;
