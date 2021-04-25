@@ -58,9 +58,15 @@ public class Node<K extends Comparable <K>,V>  {
 	public Node<K,V> getMin() {
 		Node<K,V> min = this;
 		while(min.getLeft()!=null) {
-				min=min.getLeft();
+			min=min.getLeft();
 		}
 		return min;
+	}
+	public void updateNode() {	
+		int lh =  left != null? left.height:0;
+		int rh =  right != null? right.height:0;
+		height = ((lh > rh)? lh : rh) + 1;
+
 	}
 	public int getBFactor() {
 		return h2-h1;
