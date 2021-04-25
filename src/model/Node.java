@@ -1,13 +1,30 @@
 package model;
 
-public class Node<K extends Comparable <K>,V extends Comparable <V>> {
-	K valor;
-	V indice;
-	Node<K,V> father;
-	Node<K,V> left;
-	Node<K,V> right;
+import java.util.ArrayList;
+
+public class Node<K extends Comparable <K>,V>  {
+	private K key;
+	private ArrayList<V> value;
+	private Node<K,V> father;
+	private Node<K,V> left;
+	private Node<K,V> right;
+	private int height;
 	private int h1;
 	private int h2;
+	
+	public Node(K k, V v) {
+		super();
+		key = k;
+		value=new ArrayList<V>();
+		value.add(v);
+		height = 1;
+	}
+	public int getHeight() {
+		return height;
+	}
+	public void setHeight(int height) {
+		this.height = height;
+	}
 	public Node<K, V> getFather() {
 		return father;
 	}
@@ -26,47 +43,33 @@ public class Node<K extends Comparable <K>,V extends Comparable <V>> {
 	public void setRight(Node<K, V> right) {
 		this.right = right;
 	}
-
-	public Node(K valor, V indice) {
-		super();
-		this.valor = valor;
-		this.indice = indice;
+	public K getKey() {
+		return key;
 	}
-	public K getValor() {
-		return valor;
+	public void setKey(K key) {
+		this.key = key;
 	}
-	public void setValor(K valor) {
-		this.valor = valor;
+	public ArrayList<V> getValue() {
+		return value;
 	}
-	public V getIndice() {
-		return indice;
-	}
-	public void setIndice(V indice) {
-		this.indice = indice;
-	}
-	public int getH1() {
-		return h1;
-	}
-	public void setH1(int h1) {
-		this.h1 = h1;
-	}
-	public int getH2() {
-		return h2;
-	}
-	public void setH2(int h2) {
-		this.h2 = h2;
-	}
-	public int getH() {
-		return h1>h2? h1:h2;
+	public void setValue(ArrayList<V> value) {
+		this.value = value;
 	}
 	public Node<K,V> getMin() {
 		Node<K,V> min = this;
 		while(min.getLeft()!=null) {
-				min=min.getLeft();
+			min=min.getLeft();
 		}
 		return min;
+	}
+	public void updateNode() {	
+		int lh =  left != null? left.height:0;
+		int rh =  right != null? right.height:0;
+		height = ((lh > rh)? lh : rh) + 1;
+
 	}
 	public int getBFactor() {
 		return h2-h1;
 	}
+		
 }
