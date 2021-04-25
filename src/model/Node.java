@@ -3,8 +3,8 @@ package model;
 import java.util.ArrayList;
 
 public class Node<K extends Comparable <K>,V>  {
-	private ArrayList<K> key;
-	private V value;
+	private K key;
+	private ArrayList<V> value;
 	private Node<K,V> father;
 	private Node<K,V> left;
 	private Node<K,V> right;
@@ -14,9 +14,9 @@ public class Node<K extends Comparable <K>,V>  {
 	
 	public Node(K k, V v) {
 		super();
-		key = new ArrayList<K>();
-		key.add(k);
-		value=v;
+		key = k;
+		value=new ArrayList<V>();
+		value.add(v);
 		height = 1;
 	}
 	public int getHeight() {
@@ -43,16 +43,16 @@ public class Node<K extends Comparable <K>,V>  {
 	public void setRight(Node<K, V> right) {
 		this.right = right;
 	}
-	public ArrayList<K> getKey() {
+	public K getKey() {
 		return key;
 	}
-	public void setKey(ArrayList<K> key) {
+	public void setKey(K key) {
 		this.key = key;
 	}
-	public V getValue() {
+	public ArrayList<V> getValue() {
 		return value;
 	}
-	public void setValue(V value) {
+	public void setValue(ArrayList<V> value) {
 		this.value = value;
 	}
 	public Node<K,V> getMin() {
