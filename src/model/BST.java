@@ -96,24 +96,35 @@ public class BST<K extends Comparable<K>,V> implements IBST<K,V>{
 		}		
 	}
 	@Override
-	
+	public void inOrderLess(K key) {
+		if(root!=null) {
+			inOrderLess(root,key);
+		}
+	}
+	@Override
 	public void inOrderLess(Node<K,V> node,K key) {
 		if (node != null) {
-			inOrderLess(node.getRight(),key);
+			inOrderLess(node.getLeft(),key);
 			if(node.getKey().compareTo(key)<=0) {
 				nodos.add(node);
 			}
-			inOrderLess(node.getLeft(),key);
+			inOrderLess(node.getRight(),key);
+		}
+	}
+	@Override
+	public void inOrderMore(K key) {
+		if(root!=null) {
+			inOrderMore(root,key);
 		}
 	}
 	@Override
 	public void inOrderMore(Node<K,V> node,K key) {
 		if (node != null) {
-			inOrderMore(node.getRight(),key);
+			inOrderMore(node.getLeft(),key);
 			if(node.getKey().compareTo(key)>=0) {
 				nodos.add(node);
 			}
-			inOrderMore(node.getLeft(),key);
+			inOrderMore(node.getRight(),key);
 		}
 	}
 	
