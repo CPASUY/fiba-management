@@ -41,7 +41,7 @@ public class BST<K extends Comparable<K>,V> implements IBST<K,V>{
 	}	
 	@Override
 	public void insertE(Node<K,V> root, Node<K,V> newNode){
-		if(root.getKey() != null) {
+		if(root != null) {
 			if(newNode.getKey().compareTo(root.getKey())== 0) {
 				root.getValue().add(newNode.getValue().get(0));
 			}
@@ -96,6 +96,7 @@ public class BST<K extends Comparable<K>,V> implements IBST<K,V>{
 		}		
 	}
 	@Override
+	
 	public void inOrderLess(Node<K,V> node,K key) {
 		if (node != null) {
 			inOrderLess(node.getRight(),key);

@@ -90,7 +90,6 @@ public class Fiba_Controller {
 		rbts = new ArrayList<RBT<String,Integer>>();
 		bst = null;
 		allData = null;
-		chargePlayers();
 	}
 	public void initialize() {
 		stage.setOnCloseRequest(new EventHandler<WindowEvent>() {

@@ -23,8 +23,8 @@ public class Main extends Application {
 		primaryStage.show();
 		primaryStage.setTitle("Fiba Management");
 		fb.initialize();
-		fb.loadBuscarJugadores();
 		fb.chargePlayers();
+		fb.loadBuscarJugadores();
 	}
 
 }
