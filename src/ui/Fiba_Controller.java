@@ -19,8 +19,10 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
@@ -28,6 +30,7 @@ import javafx.stage.WindowEvent;
 import model.AVL;
 import model.BST;
 import model.Player;
+import model.RBT;
 
 public class Fiba_Controller {
 	//Constant
@@ -36,10 +39,11 @@ public class Fiba_Controller {
 	private BorderPane basePane;
 	private Stage stage;
 	private Player p;
-	private AVL<String,Integer>[] avls;
+	private ArrayList<AVL<String,Integer>>avls;
+	private ArrayList<RBT<String,Integer>>rbts;
 	private BST<String,Integer> bst;
 	private List<String[]> allData;
-	private final int QUANTITY_DATA = 200000;
+	private final int QUANTITY_DATA = 20;
 	@FXML
 	private TableView<Player> tablePlayers;
 
@@ -69,11 +73,21 @@ public class Fiba_Controller {
 	
 	@FXML
 	private TableColumn<Player, Integer> idBlocks;
-
+	
+	@FXML
+	private ChoiceBox<String> criteriaBox;
+	
+	@FXML
+	private ChoiceBox<String> comparisonBox;
+	
+	@FXML
+	private TextField valueBox;
+	
 
 	public Fiba_Controller(Stage s) throws IOException, CsvException {
 		stage=s;
-		avls = new AVL[2];
+		avls = new ArrayList<AVL<String,Integer>>();
+		rbts = new ArrayList<RBT<String,Integer>>();
 		bst = null;
 		allData = null;
 	}
@@ -98,6 +112,10 @@ public class Fiba_Controller {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		criteriaBox.getItems().addAll("Points","Rebounds","Assists","Robberies","Blocks","Age");
+		criteriaBox.setValue("Points");
+		comparisonBox.getItems().addAll("=",">","<");
+		comparisonBox.setValue("=");
 	}
 	public void loadBaseDeDatos(){
 		FXMLLoader fxmload = new FXMLLoader(getClass().getResource("BaseDeDatos.fxml"));
@@ -111,9 +129,86 @@ public class Fiba_Controller {
 			e.printStackTrace();
 		}
 	}
+	
 	@FXML
-	void buscar(){
+	void search(){
+		if(valueBox.getText() != "") {
+			verifyCriteria();
+		}
 		loadBaseDeDatos();
+	}
+	
+	
+	void verifyComparisonBST(BST<String,Integer> abb) {
+	
+		if(comparisonBox.getValue().equals("=")){
+			abb.searchEquals(valueBox.getText());
+		}
+		else if(comparisonBox.getValue().equals(">")) {
+			abb.searchMore(valueBox.getText());
+		}
+		else {
+			abb.searchLess(valueBox.getText());
+		}
+	}
+	
+	void verifyComparisonAVL(AVL<String,Integer> abb) {
+		if(comparisonBox.getValue().equals("=")){
+			abb.searchEquals(valueBox.getText());
+		}
+		else if(comparisonBox.getValue().equals(">")) {
+			abb.searchMore(valueBox.getText());
+		}
+		else {
+			abb.searchLess(valueBox.getText());
+		}
+	}
+	
+	void verifyComparisonRBT(RBT<String,Integer> abb) {
+		if(comparisonBox.getValue().equals("=")){
+			abb.searchEquals(valueBox.getText());
+		}
+		else if(comparisonBox.getValue().equals(">")) {
+			abb.searchMore(valueBox.getText());
+		}
+		else {
+			abb.searchLess(valueBox.getText());
+		}
+	}
+	
+	void verifyCriteria() {
+		
+		switch(criteriaBox.getValue()) {
+		case "Points":
+			verifyComparisonAVL(avls.get(0));
+			break;
+		case "Rebounds":
+			verifyComparisonAVL(avls.get(1));
+			break;
+			
+		case "Assists":
+			verifyComparisonBST(bst);
+			break;
+		
+		case "Robberies":
+			verifyComparisonRBT(rbts.get(0));
+			break;
+			
+		case "Blocks":
+			verifyComparisonRBT(rbts.get(1));
+			break;
+			
+		case "Age":
+			
+			break;
+		default:
+			break;
+		}
+	}
+	
+	@FXML
+	void returnSearch() {
+		loadBuscarJugadores();
 	}
 
 	void chargePlayers() {
@@ -121,7 +216,6 @@ public class Fiba_Controller {
 		try {
 			filereader = new FileReader(PLAYERS_FILE_NAME);
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		CSVParser parser = new CSVParserBuilder().withSeparator(',').build();
@@ -129,39 +223,51 @@ public class Fiba_Controller {
 		try {
 			allData = csvReader.readAll();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		} catch (CsvException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 		fillAVL(allData,4,6);
 		fillBST(allData,6,7);
-		
+		fillRBT(allData,7,9);
 	}
 	
 	void fillAVL(List<String[]> values,int startColum,int finishColum) {
 		int columns = startColum;
-		int index = 0;
-		AVL<String, Integer> temp = new AVL<String,Integer>();
 		while(columns != finishColum ) {
-			for(int i = 1;i<QUANTITY_DATA;i++) {
-				temp.insertE(values.get(i)[columns], i);
-			}
-		avls[index] = temp;
-		index++;
+		AVL<String, Integer> temp = new AVL<String,Integer>();
+		for(int i = 1;i<QUANTITY_DATA;i++) {
+			temp.insertE(values.get(i)[columns], i);
+		}
+		avls.add(temp);
 		columns++;
 		}
 	}
 	
 	void fillBST(List<String[]> values,int startColum,int finishColum) {
 		int columns = startColum;
+		
 		BST<String, Integer> temp = new BST<String,Integer>();
 		while(columns != finishColum ) {
 			for(int i = 1;i<QUANTITY_DATA;i++) {
 				temp.insertE(values.get(i)[columns], i);
 			}
-		bst = temp;
+			bst = temp;
+			columns++;
+		}
+	}
+	
+	void fillRBT(List<String[]> values,int startColum,int finishColum) {
+		int columns = startColum;
+		while(columns != finishColum ) {
+			RBT<String, Integer> temp = new RBT<String,Integer>();
+			for(int i = 1;i<QUANTITY_DATA;i++) {
+				temp.insertNode(values.get(i)[columns], i);
+			}
+		System.out.println(temp);
+		rbts.add(temp);
 		columns++;
 		}
 	}
