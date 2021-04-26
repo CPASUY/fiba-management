@@ -187,12 +187,13 @@ public class Fiba_Controller {
 			break;
 			
 		case "Assists":
-			verifyComparisonBST(bst);
-			
+			//verifyComparisonBST(bst);
+			//System.out.println(bst.getRoot().getLeft().getRight().getLeft());
+			//System.out.println(bst.getRoot().getRight());
 			break;
 		
 		case "Robberies":
-			verifyComparisonRBT(rbts.get(0));
+			//verifyComparisonRBT(rbts.get(0));
 			break;
 			
 		case "Blocks":
@@ -240,7 +241,7 @@ public class Fiba_Controller {
 		while(columns != finishColum ) {
 		AVL<String, Integer> temp = new AVL<String,Integer>();
 		for(int i = 1;i<QUANTITY_DATA;i++) {
-			temp.insert(values.get(i)[columns], i);
+			temp.insert(values.get(i)[columns], i+1);
 		}
 		avls.add(temp);
 		columns++;
@@ -252,7 +253,7 @@ public class Fiba_Controller {
 		BST<String, Integer> temp = new BST<String,Integer>();
 		while(columns != finishColum ) {
 			for(int i = 1;i<QUANTITY_DATA;i++) {
-				temp.insertE(values.get(i)[columns], i);
+				temp.insertE(values.get(i)[columns], i+1);
 			}
 			bst = temp;
 			columns++;
@@ -264,12 +265,14 @@ public class Fiba_Controller {
 		while(columns != finishColum ) {
 			RBT<String, Integer> temp = new RBT<String,Integer>();
 			for(int i = 1;i<QUANTITY_DATA;i++) {
-				temp.insertNode(values.get(i)[columns], i);
+				temp.insertNode(values.get(i)[columns], i+1);
 			}
 		rbts.add(temp);
 		columns++;
 		}
 	}
+	
+	
 
 	public void loadPlayersList() {
     	basePane.setOnKeyPressed(null);
