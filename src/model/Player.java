@@ -28,7 +28,7 @@ public class Player {
 		return name;
 	}
 	
-	public String getLast_Name() {
+	public String getLastName() {
 		return lastName;
 	}
 	
@@ -40,23 +40,23 @@ public class Player {
 		return team;
 	}
 	
-	public String getPoStrings() {
+	public String getPointsPerGame() {
 		return pointsPerGame;
 	}
 	
-	public String getRebounds() {
+	public String getReboundsPerGame() {
 		return reboundsPerGame;
 	}
 	
-	public String getAssists() {
+	public String getAssistsPerGame() {
 		return assistsPerGame;
 	}
 	
-	public String getRobberies() {
+	public String getRobberiesPerGame() {
 		return robberiesPerGame;
 	}
 	
-	public String getBlocks() {
+	public String getBlocksPerGame() {
 		return blocksPerGame;
 	}
 	
