@@ -5,6 +5,7 @@ import java.util.ArrayList;
 public class BST<K extends Comparable<K>,V> implements IBST<K,V>{
 	private int weight;
 	ArrayList <Node<K,V>> nodos;
+
 	protected Node<K,V> root;
 	
 	public BST() {
@@ -79,6 +80,7 @@ public class BST<K extends Comparable<K>,V> implements IBST<K,V>{
 			return null;
 		}
 	}
+	
 	@Override
 	public Node<K, V> searchEquals(K key, Node<K, V> n) {
 		if(n!= null) {
@@ -94,6 +96,7 @@ public class BST<K extends Comparable<K>,V> implements IBST<K,V>{
 		}		
 	}
 	@Override
+	
 	public void inOrderLess(Node<K,V> node,K key) {
 		if (node != null) {
 			inOrderLess(node.getRight(),key);
@@ -106,11 +109,11 @@ public class BST<K extends Comparable<K>,V> implements IBST<K,V>{
 	@Override
 	public void inOrderMore(Node<K,V> node,K key) {
 		if (node != null) {
-			inOrderLess(node.getRight(),key);
+			inOrderMore(node.getRight(),key);
 			if(node.getKey().compareTo(key)>=0) {
 				nodos.add(node);
 			}
-			inOrderLess(node.getLeft(),key);
+			inOrderMore(node.getLeft(),key);
 		}
 	}
 	@Override

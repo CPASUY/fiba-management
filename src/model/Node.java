@@ -55,6 +55,7 @@ public class Node<K extends Comparable <K>,V>  {
 	public void setValue(ArrayList<V> value) {
 		this.value = value;
 	}
+	
 	public Node<K,V> getMin() {
 		Node<K,V> min = this;
 		while(min.getLeft()!=null) {
@@ -62,6 +63,7 @@ public class Node<K extends Comparable <K>,V>  {
 		}
 		return min;
 	}
+	
 	public void modifiedNode() {	
 		int leftH=0;
 		int rightH=0;
