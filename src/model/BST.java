@@ -11,6 +11,7 @@ public class BST<K extends Comparable<K>,V> implements IBST<K,V>{
 	public BST() {
 		weight=0;
 		root=null;
+		nodos = new ArrayList<Node<K,V>>();
 	}
 	public int getWeight() {
 		return weight;
@@ -96,37 +97,27 @@ public class BST<K extends Comparable<K>,V> implements IBST<K,V>{
 		}		
 	}
 	@Override
-	public void inOrderLess(K key) {
-		if(root!=null) {
-			inOrderLess(root,key);
-		}
-	}
-	@Override
+	
 	public void inOrderLess(Node<K,V> node,K key) {
 		if (node != null) {
-			inOrderLess(node.getLeft(),key);
+			inOrderLess(node.getRight(),key);
 			if(node.getKey().compareTo(key)<=0) {
 				nodos.add(node);
 			}
-			inOrderLess(node.getRight(),key);
-		}
-	}
-	@Override
-	public void inOrderMore(K key) {
-		if(root!=null) {
-			inOrderMore(root,key);
+			inOrderLess(node.getLeft(),key);
 		}
 	}
 	@Override
 	public void inOrderMore(Node<K,V> node,K key) {
 		if (node != null) {
-			inOrderMore(node.getLeft(),key);
+			inOrderMore(node.getRight(),key);
 			if(node.getKey().compareTo(key)>=0) {
 				nodos.add(node);
 			}
-			inOrderMore(node.getRight(),key);
+			inOrderMore(node.getLeft(),key);
 		}
 	}
+	
 	
 	@Override
 	public ArrayList<V> indices(){
@@ -137,5 +128,15 @@ public class BST<K extends Comparable<K>,V> implements IBST<K,V>{
 			}
 		}
 		return i;
+	}
+	@Override
+	public void inOrderLess(K key) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void inOrderMore(K key) {
+		// TODO Auto-generated method stub
+		
 	}
 }

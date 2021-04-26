@@ -3,20 +3,20 @@ package model;
 public class Player {
 
 	String name;
-	String last_name;
-	int age;
+	String lastName;
+	String age;
 	String team;
-	int pointsPerGame;
-	int reboundsPerGame;
-	int assistsPerGame;
-	int robberiesPerGame;
-	int blocksPerGame;
+	String pointsPerGame;
+	String reboundsPerGame;
+	String assistsPerGame;
+	String robberiesPerGame;
+	String blocksPerGame;
 	
-	public Player(String name,String last_name,int age,String team, int points,int rebounds,int assists,int robberies, int blocks) {
-		this.name = name;
-		this.last_name=last_name;
-		this.age = age;
-		this.team = team;
+	public Player(String n,String l,String a,String t, String points,String rebounds,String assists,String robberies, String blocks) {
+		name = n;
+		lastName=l;
+		age = a;
+		team = t;
 		pointsPerGame = points;
 		reboundsPerGame = rebounds;
 		assistsPerGame = assists;
@@ -29,10 +29,10 @@ public class Player {
 	}
 	
 	public String getLast_Name() {
-		return last_name;
+		return lastName;
 	}
 	
-	public int getAge() {
+	public String getAge() {
 		return age;
 	}
 	
@@ -40,23 +40,23 @@ public class Player {
 		return team;
 	}
 	
-	public int getPoints() {
+	public String getPoStrings() {
 		return pointsPerGame;
 	}
 	
-	public int getRebounds() {
+	public String getRebounds() {
 		return reboundsPerGame;
 	}
 	
-	public int getAssists() {
+	public String getAssists() {
 		return assistsPerGame;
 	}
 	
-	public int getRobberies() {
+	public String getRobberies() {
 		return robberiesPerGame;
 	}
 	
-	public int getBlocks() {
+	public String getBlocks() {
 		return blocksPerGame;
 	}
 	

@@ -33,7 +33,7 @@ class BSTTest {
 	void test2() {
 		setup2();
 		assertNotNull(bst.getRoot().getLeft(),"It is null");
-		bst.testArbol(bst.getRoot());
+		
 		assertNotNull(bst.getRoot().getRight().getLeft().getValue(),"It is null");
 	}
 

@@ -38,41 +38,42 @@ public class Fiba_Controller {
 	@FXML
 	private BorderPane basePane;
 	private Stage stage;
-	private Player p;
 	private ArrayList<AVL<String,Integer>>avls;
 	private ArrayList<RBT<String,Integer>>rbts;
 	private BST<String,Integer> bst;
 	private List<String[]> allData;
+	private ArrayList<Player> players;
 	private final int QUANTITY_DATA = 20;
+	
 	@FXML
 	private TableView<Player> tablePlayers;
 
 	@FXML
-	private TableColumn<Player, String> idName;
+	private TableColumn<Player,String> idName;
 
 	@FXML
-	private TableColumn<Player, String> idLast_Name;
+	private TableColumn<Player,String> idLastName; 
 
 	@FXML
-	private TableColumn<Player, Integer> idAge;
+	private TableColumn<Player,String> idAge;
 
 	@FXML
-	private TableColumn<Player, String> idTeam;
+	private TableColumn<Player,String> idTeam;
 
 	@FXML
-	private TableColumn<Player, Integer> idPoints;
+	private TableColumn<Player,String> idPoints;
 
 	@FXML
-	private TableColumn<Player, Integer> idRebounds;
+	private TableColumn<Player,String> idRebounds;
 
 	@FXML
-	private TableColumn<Player, Integer> idAssists;
+	private TableColumn<Player,String> idAssists;
 
 	@FXML
-	private TableColumn<Player, Integer> idRobberies;
+	private TableColumn<Player,String> idRobberies;
 	
 	@FXML
-	private TableColumn<Player, Integer> idBlocks;
+	private TableColumn<Player,String> idBlocks;
 	
 	@FXML
 	private ChoiceBox<String> criteriaBox;
@@ -89,6 +90,7 @@ public class Fiba_Controller {
 		avls = new ArrayList<AVL<String,Integer>>();
 		rbts = new ArrayList<RBT<String,Integer>>();
 		bst = null;
+		players = new ArrayList<Player>();
 		allData = null;
 	}
 	public void initialize() {
@@ -116,6 +118,7 @@ public class Fiba_Controller {
 		criteriaBox.setValue("Points");
 		comparisonBox.getItems().addAll("=",">","<");
 		comparisonBox.setValue("=");
+		chargePlayers();
 	}
 	public void loadBaseDeDatos(){
 		FXMLLoader fxmload = new FXMLLoader(getClass().getResource("BaseDeDatos.fxml"));
@@ -125,6 +128,7 @@ public class Fiba_Controller {
 			root = fxmload.load();
 			basePane.getChildren().clear();
 			basePane.setCenter(root);
+			loadPlayersList();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -138,9 +142,7 @@ public class Fiba_Controller {
 		}
 	}
 	
-	
-	void verifyComparisonBST(BST<String,Integer> abb) {
-	
+	void verifyComparison(BST<String,Integer> abb) {
 		if(comparisonBox.getValue().equals("=")){
 			abb.searchEquals(valueBox.getText());
 		}
@@ -150,54 +152,29 @@ public class Fiba_Controller {
 		else {
 			abb.inOrderLess(abb.getRoot(),valueBox.getText());
 		}
-	}
-	
-	void verifyComparisonAVL(AVL<String,Integer> abb) {
-		if(comparisonBox.getValue().equals("=")){
-			abb.searchEquals(valueBox.getText());
-		}
-		else if(comparisonBox.getValue().equals(">")) {
-			abb.inOrderMore(abb.getRoot(),valueBox.getText());
-		}
-		else {
-			abb.inOrderLess(abb.getRoot(),valueBox.getText());
-		}
-	}
-	
-	void verifyComparisonRBT(RBT<String,Integer> abb) {
-		if(comparisonBox.getValue().equals("=")){
-			abb.searchEquals(valueBox.getText());
-		}
-		else if(comparisonBox.getValue().equals(">")) {
-			abb.inOrderMore(abb.getRoot(),valueBox.getText());
-		}
-		else {
-			abb.inOrderLess(abb.getRoot(),valueBox.getText());
-		}
+		generateSearchPlayers(abb);
 	}
 	
 	void verifyCriteria() {
 		
 		switch(criteriaBox.getValue()) {
 		case "Points":
-			verifyComparisonAVL(avls.get(0));
+			verifyComparison(avls.get(0));
 			break;
 		case "Rebounds":
-			verifyComparisonAVL(avls.get(1));
+			verifyComparison(avls.get(1));
 			break;
 			
 		case "Assists":
-			//verifyComparisonBST(bst);
-			//System.out.println(bst.getRoot().getLeft().getRight().getLeft());
-			//System.out.println(bst.getRoot().getRight());
+			verifyComparison(bst);
 			break;
 		
 		case "Robberies":
-			//verifyComparisonRBT(rbts.get(0));
+			verifyComparison(rbts.get(0));
 			break;
 			
 		case "Blocks":
-			verifyComparisonRBT(rbts.get(1));
+			verifyComparison(rbts.get(1));
 			break;
 			
 		case "Age":
@@ -272,11 +249,26 @@ public class Fiba_Controller {
 		}
 	}
 	
+	void generateSearchPlayers(BST<String,Integer> abb) {
+		
+		if(players.isEmpty() == false) {
+		  players.clear();
+		}
+		Player temp;
+		for(int i =0; i<abb.indices().size();i++) {
+		temp = new Player(allData.get(abb.indices().get(i))[0],allData.get(abb.indices().get(i))[1],allData.get(abb.indices().get(i))[2],
+						allData.get(abb.indices().get(i))[3],allData.get(abb.indices().get(i))[4],
+						allData.get(abb.indices().get(i))[5],allData.get(abb.indices().get(i))[6],
+						allData.get(abb.indices().get(i))[7],allData.get(abb.indices().get(i))[8]);
+						players.add(temp);
+			}
+	}
+	
 	
 
 	public void loadPlayersList() {
     	basePane.setOnKeyPressed(null);
-    	FXMLLoader fxmload = new FXMLLoader(getClass().getResource("Seccion1.fxml"));
+    	FXMLLoader fxmload = new FXMLLoader(getClass().getResource("BaseDeDatos.fxml"));
 		fxmload.setController(this);
 		Parent root;
 		try {
@@ -287,18 +279,17 @@ public class Fiba_Controller {
 			e.printStackTrace();
 		}
 		tablePlayers.getItems().clear();
-		//ArrayList<Player> list=books.booksList();
-		//ObservableList<Book>books= FXCollections.observableArrayList(list);
-		//tableBooks.setItems(books);
+		ObservableList<Player>list= FXCollections.observableArrayList(players);
+		tablePlayers.setItems(list);
 		
-		idName.setCellValueFactory(new PropertyValueFactory<Player, String>("name"));
-		idLast_Name.setCellValueFactory(new PropertyValueFactory<Player, String>("last_name"));
-		idAge.setCellValueFactory(new PropertyValueFactory<Player, Integer>("age"));
+		idName.setCellValueFactory(new PropertyValueFactory<Player,String>("name"));
+		idLastName.setCellValueFactory(new PropertyValueFactory<Player,String>("lastName"));
+		idAge.setCellValueFactory(new PropertyValueFactory<Player,String>("age"));
 		idTeam.setCellValueFactory(new PropertyValueFactory<Player,String>("team"));
-		idPoints.setCellValueFactory(new PropertyValueFactory<Player, Integer>("pointsPerGame"));
-		idRebounds.setCellValueFactory(new PropertyValueFactory<Player,Integer>("reboundsPerGame"));
-		idAssists.setCellValueFactory(new PropertyValueFactory<Player, Integer>("assistsPerGame"));
-		idRobberies.setCellValueFactory(new PropertyValueFactory<Player,Integer>("robberiesPerGame"));
-		idBlocks.setCellValueFactory(new PropertyValueFactory<Player,Integer>("blocksPerGame"));
+		idPoints.setCellValueFactory(new PropertyValueFactory<Player,String>("pointsPerGame"));
+		idRebounds.setCellValueFactory(new PropertyValueFactory<Player,String>("reboundsPerGame"));
+		idAssists.setCellValueFactory(new PropertyValueFactory<Player,String>("assistsPerGame"));
+		idRobberies.setCellValueFactory(new PropertyValueFactory<Player,String>("robberiesPerGame"));
+		idBlocks.setCellValueFactory(new PropertyValueFactory<Player,String>("blocksPerGame"));
 	}
 }
