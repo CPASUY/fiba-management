@@ -2,12 +2,12 @@ package model;
 
 public class RBT<K extends Comparable<K>,V> extends BST<K,V> implements IBST<K,V>,IRBT<K,V>{
 
-	private NodeRBT<K,V> nillNode;
+	private NodeRBT<K,V> nullNode;
 	
 	public RBT() {
 		super();
-		nillNode = new NodeRBT<K,V>(null,null);
-		nillNode.setC(0);
+		nullNode = new NodeRBT<K,V>(null,null);
+		nullNode.setC(0);
 		
 	}
 	public NodeRBT<K,V> rotateRight(NodeRBT<K,V> node) {
@@ -74,8 +74,8 @@ public class RBT<K extends Comparable<K>,V> extends BST<K,V> implements IBST<K,V
 		boolean add=false;
 		NodeRBT<K,V> newNode = new NodeRBT<K,V>(k,v);
 		insertE(k,v);
-		newNode.setLeft(nillNode);
-		newNode.setRight(nillNode);
+		newNode.setLeft(nullNode);
+		newNode.setRight(nullNode);
 		if(newNode==root || newNode.getFather()==null) {	
 			add=true;
 		} else {
