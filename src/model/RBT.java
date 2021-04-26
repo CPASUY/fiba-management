@@ -7,7 +7,7 @@ public class RBT<K extends Comparable<K>,V> extends BST<K,V> implements IBST<K,V
 	public RBT() {
 		super();
 		nillNode = new NodeRBT<K,V>(null,null);
-		nillNode.setC(ColorNode.BLACK);
+		nillNode.setC(0);
 		
 	}
 	public NodeRBT<K,V> rotateRight(NodeRBT<K,V> node) {
@@ -85,14 +85,14 @@ public class RBT<K extends Comparable<K>,V> extends BST<K,V> implements IBST<K,V
 		return add;
 	}
 	public void insertF(NodeRBT<K,V> node){
-		while(((NodeRBT<K,V>)node.getFather()).getC() == ColorNode.RED) {
+		while(((NodeRBT<K,V>)node.getFather()).getC() == 1) {
 			NodeRBT<K,V> uncle;
 			if(node.getFather() == node.getFather().getFather().getLeft()) {
 				uncle = (NodeRBT<K,V>)node.getFather().getFather().getRight();
-				if(uncle.getC() == ColorNode.RED) {
-					((NodeRBT<K,V>) node.getFather()).setC(ColorNode.BLACK);
-					uncle.setC(ColorNode.BLACK);
-					((NodeRBT<K,V>) node.getFather().getFather()).setC(ColorNode.RED);
+				if(uncle.getC() ==1) {
+					((NodeRBT<K,V>) node.getFather()).setC(0);
+					uncle.setC(0);
+					((NodeRBT<K,V>) node.getFather().getFather()).setC(1);
 					node = (NodeRBT<K,V>) node.getFather().getFather();
 
 				} else { 
@@ -100,28 +100,28 @@ public class RBT<K extends Comparable<K>,V> extends BST<K,V> implements IBST<K,V
 						node= (NodeRBT<K, V>) node.getFather();
 						rotateLeft(node);
 					}
-					((NodeRBT<K, V>) node.getFather()).setC(ColorNode.BLACK);
-					((NodeRBT<K,V>) node.getFather().getFather()).setC(ColorNode.RED);
+					((NodeRBT<K, V>) node.getFather()).setC(0);
+					((NodeRBT<K,V>) node.getFather().getFather()).setC(1);
 					rotateRight((NodeRBT<K, V>) node.getFather().getFather());
 				}
 			} else {
 				uncle = (NodeRBT<K,V>)node.getFather().getFather().getLeft();
-				if(uncle.getC() == ColorNode.RED) {
-					((NodeRBT<K,V>) node.getFather()).setC(ColorNode.BLACK);
-					uncle.setC(ColorNode.BLACK);
-					((NodeRBT<K,V>) node.getFather().getFather()).setC(ColorNode.RED);
+				if(uncle.getC() ==1) {
+					((NodeRBT<K,V>) node.getFather()).setC(0);
+					uncle.setC(0);
+					((NodeRBT<K,V>) node.getFather().getFather()).setC(1);
 					node= (NodeRBT<K,V>) node.getFather().getFather();
 				} else { 
 					if(node == node.getFather().getLeft()) {
 						node= (NodeRBT<K, V>) node.getFather();
 						rotateRight(node);
 					}
-					((NodeRBT<K, V>) node.getFather()).setC(ColorNode.BLACK);
-					((NodeRBT<K,V>) node.getFather().getFather()).setC(ColorNode.RED);
+					((NodeRBT<K, V>) node.getFather()).setC(0);
+					((NodeRBT<K,V>) node.getFather().getFather()).setC(1);
 					rotateLeft((NodeRBT<K, V>) node.getFather().getFather());
 				}
 			}
 		}
-		((NodeRBT<K,V>)root).setC(ColorNode.BLACK);
+		((NodeRBT<K,V>)root).setC(0);
 	}
 }
