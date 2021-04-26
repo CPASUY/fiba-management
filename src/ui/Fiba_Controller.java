@@ -90,6 +90,7 @@ public class Fiba_Controller {
 		rbts = new ArrayList<RBT<String,Integer>>();
 		bst = null;
 		allData = null;
+		chargePlayers();
 	}
 	public void initialize() {
 		stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
@@ -132,10 +133,10 @@ public class Fiba_Controller {
 	
 	@FXML
 	void search(){
-		if(valueBox.getText() != "") {
+		if(valueBox.getText() != null && valueBox.getText().trim().isEmpty() == false) {
 			verifyCriteria();
+			loadBaseDeDatos();
 		}
-		loadBaseDeDatos();
 	}
 	
 	
@@ -145,10 +146,10 @@ public class Fiba_Controller {
 			abb.searchEquals(valueBox.getText());
 		}
 		else if(comparisonBox.getValue().equals(">")) {
-			abb.searchMore(valueBox.getText());
+			abb.inOrderMore(abb.getRoot(),valueBox.getText());
 		}
 		else {
-			abb.searchLess(valueBox.getText());
+			abb.inOrderLess(abb.getRoot(),valueBox.getText());
 		}
 	}
 	
@@ -157,10 +158,10 @@ public class Fiba_Controller {
 			abb.searchEquals(valueBox.getText());
 		}
 		else if(comparisonBox.getValue().equals(">")) {
-			abb.searchMore(valueBox.getText());
+			abb.inOrderMore(abb.getRoot(),valueBox.getText());
 		}
 		else {
-			abb.searchLess(valueBox.getText());
+			abb.inOrderLess(abb.getRoot(),valueBox.getText());
 		}
 	}
 	
@@ -169,10 +170,10 @@ public class Fiba_Controller {
 			abb.searchEquals(valueBox.getText());
 		}
 		else if(comparisonBox.getValue().equals(">")) {
-			abb.searchMore(valueBox.getText());
+			abb.inOrderMore(abb.getRoot(),valueBox.getText());
 		}
 		else {
-			abb.searchLess(valueBox.getText());
+			abb.inOrderLess(abb.getRoot(),valueBox.getText());
 		}
 	}
 	
@@ -188,6 +189,7 @@ public class Fiba_Controller {
 			
 		case "Assists":
 			verifyComparisonBST(bst);
+			
 			break;
 		
 		case "Robberies":
@@ -239,7 +241,7 @@ public class Fiba_Controller {
 		while(columns != finishColum ) {
 		AVL<String, Integer> temp = new AVL<String,Integer>();
 		for(int i = 1;i<QUANTITY_DATA;i++) {
-			temp.insertE(values.get(i)[columns], i);
+			temp.insert(values.get(i)[columns], i);
 		}
 		avls.add(temp);
 		columns++;
@@ -248,7 +250,6 @@ public class Fiba_Controller {
 	
 	void fillBST(List<String[]> values,int startColum,int finishColum) {
 		int columns = startColum;
-		
 		BST<String, Integer> temp = new BST<String,Integer>();
 		while(columns != finishColum ) {
 			for(int i = 1;i<QUANTITY_DATA;i++) {
@@ -266,7 +267,6 @@ public class Fiba_Controller {
 			for(int i = 1;i<QUANTITY_DATA;i++) {
 				temp.insertNode(values.get(i)[columns], i);
 			}
-		System.out.println(temp);
 		rbts.add(temp);
 		columns++;
 		}
