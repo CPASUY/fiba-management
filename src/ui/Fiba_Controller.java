@@ -43,7 +43,7 @@ public class Fiba_Controller {
 	private BST<String,Integer> bst;
 	private List<String[]> allData;
 	private ArrayList<Player> players;
-	private final int QUANTITY_DATA = 20;
+	private final int QUANTITY_DATA = 200;
 	
 	@FXML
 	private TableView<Player> tablePlayers;
@@ -178,7 +178,7 @@ public class Fiba_Controller {
 			break;
 			
 		case "Age":
-			
+			linealSearch(comparisonBox.getValue(),valueBox.getText());
 			break;
 		default:
 			break;
@@ -246,6 +246,41 @@ public class Fiba_Controller {
 			}
 		rbts.add(temp);
 		columns++;
+		}
+	}
+	
+	void linealSearch(String v,String search) {
+		players.clear();
+		int age = Integer.valueOf(search);
+		if(v.equals("=")){
+			for(int i=1;i<QUANTITY_DATA;i++) {
+				if(age == Integer.valueOf(allData.get(i)[2])) {
+					players.add(new Player(allData.get(i)[0],allData.get(i)[1],allData.get(i)[2]
+					,allData.get(i)[3],allData.get(i)[4],allData.get(i)[5]
+					,allData.get(i)[6],allData.get(i)[7]
+					,allData.get(i)[8]));
+				}
+			}
+		}
+		else if(v.equals(">")) {
+			for(int i=1;i<QUANTITY_DATA;i++) {
+				if(age < Integer.valueOf(allData.get(i)[2])) {
+					players.add(new Player(allData.get(i)[0],allData.get(i)[1],allData.get(i)[2]
+							,allData.get(i)[3],allData.get(i)[4],allData.get(i)[5]
+							,allData.get(i)[6],allData.get(i)[7]
+							,allData.get(i)[8]));
+				}
+			}
+		}
+		else {
+			for(int i=1;i<QUANTITY_DATA;i++) {
+				if(age > Integer.valueOf(allData.get(i)[2])) {
+					players.add(new Player(allData.get(i)[0],allData.get(i)[1],allData.get(i)[2]
+							,allData.get(i)[3],allData.get(i)[4],allData.get(i)[5]
+							,allData.get(i)[6],allData.get(i)[7]
+							,allData.get(i)[8]));
+				}
+			}
 		}
 	}
 	

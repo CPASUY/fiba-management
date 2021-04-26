@@ -72,7 +72,7 @@ public class BST<K extends Comparable<K>,V> implements IBST<K,V>{
 		if(root != null) {	
 			Node<K,V> node= searchEquals(key,root);
 			if(node.getValue()!= null) {
-				return node.getValue();	
+				return node.getValue();
 			} else {
 				return null;
 			}
