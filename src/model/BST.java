@@ -39,31 +39,31 @@ public class BST<K extends Comparable<K>,V> implements IBST<K,V>{
 		weight++;
 	}	
 	@Override
-	public void insertE(Node<K,V> root, Node<K,V> newNode){
-		if(root != null) {
-			if(newNode.getKey().compareTo(root.getKey())== 0) {
-				root.getValue().add(newNode.getValue().get(0));
+	public void insertE(Node<K,V> current, Node<K,V> newNode){
+		if(current!= null) {
+			if(newNode.getKey().compareTo(current.getKey()) < 0) {
+				Node<K,V> left =current.getLeft();
+				if(left != null) {	
+					insertE(left,newNode);
+					left.modifiedNode();	
+				} else {		
+					current.setLeft(newNode);		
+					newNode.setFather(current);
+
+				}	
+			}else if(newNode.getKey().compareTo(current.getKey())>0) {
+				Node<K,V> right = current.getRight();
+				if(right != null) {		
+					insertE(right,newNode);
+					right.modifiedNode();
+				} else {	
+					current.setRight(newNode);	
+					newNode.setFather(current);
+				}	
+			}else {
+				current.getValue().add(newNode.getValue().get(0));
 			}
-		} else if(newNode.getKey().compareTo(root.getKey()) < 0) {
-			Node<K,V> left =root.getLeft();
-			if(left != null) {	
-				insertE(left,newNode);
-				left.modifiedNode();	
-			} else {		
-				root.setLeft(newNode);		
-				newNode.setFather(root);
-				
-			}	
-		} else {	
-			Node<K,V> right = root.getRight();
-			if(right != null) {		
-				insertE(right,newNode);
-				right.modifiedNode();
-			} else {	
-				root.setRight(newNode);	
-				newNode.setFather(root);
-			}		
-		}			
+		}
 	}		
 	@Override
 	public ArrayList<V> searchEquals(K key) {
