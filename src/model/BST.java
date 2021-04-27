@@ -11,7 +11,7 @@ public class BST<K extends Comparable<K>,V> implements IBST<K,V>{
 	public BST() {
 		weight=0;
 		root=null;
-		nodos = new ArrayList<Node<K,V>>();
+		nodos=new ArrayList<Node<K,V>>();
 	}
 	public int getWeight() {
 		return weight;
@@ -43,7 +43,7 @@ public class BST<K extends Comparable<K>,V> implements IBST<K,V>{
 	@Override
 	public void insertE(Node<K,V> current, Node<K,V> newNode){
 		if(current!= null) {
-			if(Integer.valueOf((String) newNode.getKey())< Integer.valueOf((String) current.getKey())) {
+			if(newNode.getKey().compareTo(current.getKey())<0) {
 				Node<K,V> left =current.getLeft();
 				if(left != null) {	
 					insertE(left,newNode);
@@ -53,7 +53,7 @@ public class BST<K extends Comparable<K>,V> implements IBST<K,V>{
 					newNode.setFather(current);
 
 				}	
-			}else if(Integer.valueOf((String) newNode.getKey()) > Integer.valueOf((String) current.getKey())) {
+			}else if(newNode.getKey().compareTo(current.getKey())>0) {
 				Node<K,V> right = current.getRight();
 				if(right != null) {		
 					insertE(right,newNode);
@@ -62,7 +62,7 @@ public class BST<K extends Comparable<K>,V> implements IBST<K,V>{
 					current.setRight(newNode);	
 					newNode.setFather(current);
 				}	
-			}else if(Integer.valueOf((String) newNode.getKey()) == Integer.valueOf((String) current.getKey())) {
+			}else if(newNode.getKey().compareTo(current.getKey())==0) {
 				current.getValue().add(newNode.getValue().get(0));
 			}
 		}
@@ -100,8 +100,10 @@ public class BST<K extends Comparable<K>,V> implements IBST<K,V>{
 	public void inOrderLess(Node<K,V> node,K key) {
 		if (node != null) {
 			inOrderLess(node.getRight(),key);
-			if(Integer.valueOf((String) node.getKey()) < Integer.valueOf((String) key)) {
+			if(node.getKey().compareTo(key)<0) {
 				nodos.add(node);
+				System.out.println("Menores xd");
+				System.out.println(node.getKey());
 			}
 			inOrderLess(node.getLeft(),key);
 		}
@@ -110,8 +112,9 @@ public class BST<K extends Comparable<K>,V> implements IBST<K,V>{
 	public void inOrderMore(Node<K,V> node,K key) {
 		if (node != null) {
 			inOrderMore(node.getRight(),key);
-			if(Integer.valueOf((String) node.getKey()) > Integer.valueOf((String) key)) {
+			if( node.getKey().compareTo(key)>0) {
 				nodos.add(node);
+				System.out.println(node.getKey());
 			}
 			inOrderMore(node.getLeft(),key);
 		}
@@ -135,15 +138,5 @@ public class BST<K extends Comparable<K>,V> implements IBST<K,V>{
 		System.out.println(node.getKey());
 		inOrder(node.getLeft());
 	}
-	}
-	@Override
-	public void inOrderLess(K key) {
-		// TODO Auto-generated method stub
-		
-	}
-	@Override
-	public void inOrderMore(K key) {
-		// TODO Auto-generated method stub
-		
 	}
 }

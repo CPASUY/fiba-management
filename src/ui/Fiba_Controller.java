@@ -141,7 +141,7 @@ public class Fiba_Controller {
 			loadBaseDeDatos();
 		}
 	}
-	
+
 	void verifyComparison(BST<String,Integer> abb) {
 		
 		if(comparisonBox.getValue().equals("=")){
@@ -223,6 +223,7 @@ public class Fiba_Controller {
 		while(columns != finishColum ) {
 		AVL<String, Integer> temp = new AVL<String,Integer>();
 		for(int i = 1;i<QUANTITY_DATA;i++) {
+			temp.insert(values.get(i)[columns], i+1);
 			temp.insert(values.get(i)[columns], (i+1));
 		}
 		avls.add(temp);
@@ -235,7 +236,10 @@ public class Fiba_Controller {
 		BST<String, Integer> temp = new BST<String,Integer>();
 		while(columns != finishColum ) {
 			for(int i = 1;i<QUANTITY_DATA;i++) {
+				temp.insertE(values.get(i)[columns], i+1);
 				temp.insertE(values.get(i)[columns], (i+1));
+				System.out.println(values.get(i)[columns]);
+
 			}
 			bst = temp;
 			columns++;
