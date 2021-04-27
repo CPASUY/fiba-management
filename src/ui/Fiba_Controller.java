@@ -224,7 +224,6 @@ public class Fiba_Controller {
 		AVL<String, Integer> temp = new AVL<String,Integer>();
 		for(int i = 1;i<QUANTITY_DATA;i++) {
 			temp.insert(values.get(i)[columns], i+1);
-			temp.insert(values.get(i)[columns], (i+1));
 		}
 		avls.add(temp);
 		columns++;
@@ -237,7 +236,6 @@ public class Fiba_Controller {
 		while(columns != finishColum ) {
 			for(int i = 1;i<QUANTITY_DATA;i++) {
 				temp.insertE(values.get(i)[columns], i+1);
-				temp.insertE(values.get(i)[columns], (i+1));
 			}
 			bst = temp;
 			columns++;
