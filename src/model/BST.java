@@ -132,11 +132,7 @@ public class BST<K extends Comparable<K>,V> implements IBST<K,V>{
 		return indices;
 	}
 	
-	public void inOrder(Node<K,V> node) {
-	if (node != null) {
-		inOrder(node.getRight());
-		System.out.println(node.getKey());
-		inOrder(node.getLeft());
-	}
+	public void eraseNodes(){
+		nodos.clear();
 	}
 }

@@ -238,8 +238,6 @@ public class Fiba_Controller {
 			for(int i = 1;i<QUANTITY_DATA;i++) {
 				temp.insertE(values.get(i)[columns], i+1);
 				temp.insertE(values.get(i)[columns], (i+1));
-				System.out.println(values.get(i)[columns]);
-
 			}
 			bst = temp;
 			columns++;
@@ -306,6 +304,7 @@ public class Fiba_Controller {
 						allData.get(abb.indices().get(i)-1)[7],allData.get(abb.indices().get(i)-1)[8]);
 						players.add(temp);
 			}
+		abb.eraseNodes();
 	}
 	
 	void generateBSTplayers(BST<String,Integer> abb) {
@@ -320,6 +319,7 @@ public class Fiba_Controller {
 				allData.get(abb.searchEquals(valueBox.getText()).get(i)-1)[7],allData.get(abb.searchEquals(valueBox.getText()).get(i)-1)[8]);
 				players.add(temp);
 				}
+	abb.eraseNodes();
 	}
 
 	public void loadPlayersList() {
