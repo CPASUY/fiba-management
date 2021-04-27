@@ -223,11 +223,8 @@ public class Fiba_Controller {
 		while(columns != finishColum ) {
 		AVL<String, Integer> temp = new AVL<String,Integer>();
 		for(int i = 1;i<QUANTITY_DATA;i++) {
-<<<<<<< HEAD
 			temp.insert(values.get(i)[columns], i+1);
-=======
 			temp.insert(values.get(i)[columns], (i+1));
->>>>>>> c6ca903154b241b4ee99f1567fe6b66f3296cbe1
 		}
 		avls.add(temp);
 		columns++;
@@ -239,12 +236,10 @@ public class Fiba_Controller {
 		BST<String, Integer> temp = new BST<String,Integer>();
 		while(columns != finishColum ) {
 			for(int i = 1;i<QUANTITY_DATA;i++) {
-<<<<<<< HEAD
 				temp.insertE(values.get(i)[columns], i+1);
-=======
 				temp.insertE(values.get(i)[columns], (i+1));
 				System.out.println(values.get(i)[columns]);
->>>>>>> c6ca903154b241b4ee99f1567fe6b66f3296cbe1
+
 			}
 			bst = temp;
 			columns++;

@@ -139,14 +139,4 @@ public class BST<K extends Comparable<K>,V> implements IBST<K,V>{
 		inOrder(node.getLeft());
 	}
 	}
-	@Override
-	public void inOrderLess(K key) {
-		// TODO Auto-generated method stub
-		
-	}
-	@Override
-	public void inOrderMore(K key) {
-		// TODO Auto-generated method stub
-		
-	}
 }
