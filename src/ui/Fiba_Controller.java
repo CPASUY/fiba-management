@@ -236,7 +236,6 @@ public class Fiba_Controller {
 		while(columns != finishColum ) {
 			for(int i = 1;i<QUANTITY_DATA;i++) {
 				temp.insertE(values.get(i)[columns], (i+1));
-				System.out.println(values.get(i)[columns]);
 			}
 			bst = temp;
 			columns++;
@@ -301,9 +300,6 @@ public class Fiba_Controller {
 						allData.get(abb.indices().get(i)-1)[3],allData.get(abb.indices().get(i)-1)[4],
 						allData.get(abb.indices().get(i)-1)[5],allData.get(abb.indices().get(i)-1)[6],
 						allData.get(abb.indices().get(i)-1)[7],allData.get(abb.indices().get(i)-1)[8]);
-						
-						System.out.println("Indice : " + abb.indices().get(i));
-						System.out.println("Valor: " + allData.get(abb.indices().get(i)-1)[4]);
 						players.add(temp);
 			}
 	}
