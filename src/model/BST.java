@@ -100,7 +100,7 @@ public class BST<K extends Comparable<K>,V> implements IBST<K,V>{
 	public void inOrderLess(Node<K,V> node,K key) {
 		if (node != null) {
 			inOrderLess(node.getRight(),key);
-			if(node.getKey().compareTo(key)<0) {
+			if(Integer.valueOf((String) node.getKey()) < Integer.valueOf((String) key)) {
 				nodos.add(node);
 				System.out.println("Menores xd");
 				System.out.println(node.getKey());
@@ -112,7 +112,7 @@ public class BST<K extends Comparable<K>,V> implements IBST<K,V>{
 	public void inOrderMore(Node<K,V> node,K key) {
 		if (node != null) {
 			inOrderMore(node.getRight(),key);
-			if( node.getKey().compareTo(key)>0) {
+			if(Integer.valueOf((String) node.getKey())>Integer.valueOf((String) key)) {
 				nodos.add(node);
 				System.out.println(node.getKey());
 			}
