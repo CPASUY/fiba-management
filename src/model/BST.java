@@ -11,6 +11,7 @@ public class BST<K extends Comparable<K>,V> implements IBST<K,V>{
 	public BST() {
 		weight=0;
 		root=null;
+		nodos=new ArrayList<Node<K,V>>();
 	}
 	public int getWeight() {
 		return weight;

@@ -145,10 +145,10 @@ public class Fiba_Controller {
 			abb.searchEquals(valueBox.getText());
 		}
 		else if(comparisonBox.getValue().equals(">")) {
-			abb.inOrderMore(abb.getRoot(),valueBox.getText());
+			abb.inOrderMore(valueBox.getText());
 		}
 		else {
-			abb.inOrderLess(abb.getRoot(),valueBox.getText());
+			abb.inOrderLess(valueBox.getText());
 		}
 	}
 	
@@ -157,10 +157,10 @@ public class Fiba_Controller {
 			abb.searchEquals(valueBox.getText());
 		}
 		else if(comparisonBox.getValue().equals(">")) {
-			abb.inOrderMore(abb.getRoot(),valueBox.getText());
+			abb.inOrderMore(valueBox.getText());
 		}
 		else {
-			abb.inOrderLess(abb.getRoot(),valueBox.getText());
+			abb.inOrderLess(valueBox.getText());
 		}
 	}
 	
@@ -169,10 +169,10 @@ public class Fiba_Controller {
 			abb.searchEquals(valueBox.getText());
 		}
 		else if(comparisonBox.getValue().equals(">")) {
-			abb.inOrderMore(abb.getRoot(),valueBox.getText());
+			abb.inOrderMore(valueBox.getText());
 		}
 		else {
-			abb.inOrderLess(abb.getRoot(),valueBox.getText());
+			abb.inOrderLess(valueBox.getText());
 		}
 	}
 	
