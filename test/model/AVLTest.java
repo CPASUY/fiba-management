@@ -14,12 +14,13 @@ class AVLTest {
 	
 	public void setup2() {
 		avl = new AVL<>();
-		avl.insert(20,2);
-		avl.insert(19, 3);
-		avl.insert(18, 4);
-		avl.insert(17, 1);
-		avl.insert(16, 1);
-		avl.insert(15, 1);
+		avl.insert(9,6);
+		avl.insert(10,7);
+		avl.insert(5, 2);
+		avl.insert(7, 4);
+		avl.insert(8, 5);
+		avl.insert(6, 3);
+		avl.insert(1, 1);
 	}
 	
 	@Test
@@ -42,6 +43,9 @@ class AVLTest {
 		setup2();
 		assertNotNull(avl.getRoot().getLeft(),"It is null");
 		assertNotNull(avl.getRoot().getRight().getLeft().getValue(),"It is null");
+		assertEquals(avl.getRoot().getRight().getKey(),10);
+		assertEquals(avl.getRoot().getLeft().getRight().getKey(),8);
+		assertEquals(avl.getRoot().getLeft().getLeft().getKey(),5);
 	}
 	
 

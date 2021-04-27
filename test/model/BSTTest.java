@@ -37,6 +37,16 @@ class BSTTest {
 		bst.insertE(16, 4);
 		bst.insertE(12, 5);
 	}
+	public void setup5() {
+		bst = new BST<>();
+		bst.insertE(6, 6);
+		bst.insertE(5, 5);
+		bst.insertE(4, 4);
+		bst.insertE(3, 3);
+		bst.insertE(2, 2);
+		bst.insertE(1, 1);
+	}	
+	
 	@Test
 	void test() {
 		setup1();
@@ -61,9 +71,9 @@ class BSTTest {
 		
 		bst.inOrderLess(bst.getRoot(),10);
 		indices=bst.indices();
-		//assertEquals(3,indices.get(0),"It is null");
-		//assertEquals(2,indices.get(1),"It is null");
-		//assertEquals(1,indices.get(2),"It is null");
+		assertEquals(3,indices.get(0),"It is null");
+		assertEquals(2,indices.get(1),"It is null");
+		assertEquals(1,indices.get(2),"It is null");
 	}
 	@Test
 	void test3() {
@@ -77,9 +87,9 @@ class BSTTest {
 		
 		bst.inOrderLess(bst.getRoot(),10);
 		indices=bst.indices();
-		//assertEquals(1,indices.get(0),"It is null");
-		//assertEquals(2,indices.get(1),"It is null");
-		//assertEquals(3,indices.get(2),"It is null");
+		assertEquals(1,indices.get(0),"It is null");
+		assertEquals(2,indices.get(1),"It is null");
+		assertEquals(3,indices.get(2),"It is null");
 	}
 	@Test
 	void test4() {
