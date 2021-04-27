@@ -304,9 +304,6 @@ public class Fiba_Controller {
 						allData.get(abb.indices().get(i)-1)[3],allData.get(abb.indices().get(i)-1)[4],
 						allData.get(abb.indices().get(i)-1)[5],allData.get(abb.indices().get(i)-1)[6],
 						allData.get(abb.indices().get(i)-1)[7],allData.get(abb.indices().get(i)-1)[8]);
-						
-						System.out.println("Indice : " + abb.indices().get(i));
-						System.out.println("Valor: " + allData.get(abb.indices().get(i)-1)[4]);
 						players.add(temp);
 			}
 	}
