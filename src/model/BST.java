@@ -43,7 +43,7 @@ public class BST<K extends Comparable<K>,V> implements IBST<K,V>{
 	@Override
 	public void insertE(Node<K,V> current, Node<K,V> newNode){
 		if(current!= null) {
-			if(newNode.getKey().compareTo(current.getKey()) < 0) {
+			if(newNode.getKey().compareTo(current.getKey())<0) {
 				Node<K,V> left =current.getLeft();
 				if(left != null) {	
 					insertE(left,newNode);
@@ -62,7 +62,7 @@ public class BST<K extends Comparable<K>,V> implements IBST<K,V>{
 					current.setRight(newNode);	
 					newNode.setFather(current);
 				}	
-			}else {
+			}else if(newNode.getKey().compareTo(current.getKey())==0) {
 				current.getValue().add(newNode.getValue().get(0));
 			}
 		}
@@ -97,46 +97,56 @@ public class BST<K extends Comparable<K>,V> implements IBST<K,V>{
 		}		
 	}
 	@Override
-	public void inOrderLess(K key) {
-		if(root!=null) {
-			inOrderLess(root,key);
-		}
-	}
-	@Override
 	public void inOrderLess(Node<K,V> node,K key) {
 		if (node != null) {
-			inOrderLess(node.getLeft(),key);
-			if(node.getKey().compareTo(key)<=0) {
-				nodos.add(node);
-			}
 			inOrderLess(node.getRight(),key);
-		}
-	}
-	@Override
-	public void inOrderMore(K key) {
-		if(root!=null) {
-			inOrderMore(root,key);
+			if(node.getKey().compareTo(key)<0) {
+				nodos.add(node);
+				System.out.println("Menores xd");
+				System.out.println(node.getKey());
+			}
+			inOrderLess(node.getLeft(),key);
 		}
 	}
 	@Override
 	public void inOrderMore(Node<K,V> node,K key) {
 		if (node != null) {
-			inOrderMore(node.getLeft(),key);
-			if(node.getKey().compareTo(key)>=0) {
-				nodos.add(node);
-			}
 			inOrderMore(node.getRight(),key);
+			if( node.getKey().compareTo(key)>0) {
+				nodos.add(node);
+				System.out.println(node.getKey());
+			}
+			inOrderMore(node.getLeft(),key);
 		}
 	}
 	
+	
 	@Override
 	public ArrayList<V> indices(){
-		ArrayList<V> i=new ArrayList<V>();
+		ArrayList<V> indices=new ArrayList<V>();
 		for(int s=0;s<nodos.size();s++) {
 			for(int m=0;m<nodos.get(s).getValue().size();m++) {
-				i.add(nodos.get(s).getValue().get(m));
+				indices.add(nodos.get(s).getValue().get(m));
 			}
 		}
-		return i;
+		return indices;
+	}
+	
+	public void inOrder(Node<K,V> node) {
+	if (node != null) {
+		inOrder(node.getRight());
+		System.out.println(node.getKey());
+		inOrder(node.getLeft());
+	}
+	}
+	@Override
+	public void inOrderLess(K key) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void inOrderMore(K key) {
+		// TODO Auto-generated method stub
+		
 	}
 }
