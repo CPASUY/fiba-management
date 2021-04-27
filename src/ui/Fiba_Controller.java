@@ -144,20 +144,20 @@ public class Fiba_Controller {
 	
 	void verifyComparison(BST<String,Integer> abb) {
 		
-		//abb.inOrder(abb.getRoot());
-		
-		
 		if(comparisonBox.getValue().equals("=")){
-			abb.searchEquals(valueBox.getText());
+			
+			if(abb.searchEquals(valueBox.getText()) != null){
+				generateBSTplayers(abb);
+			}
 		}
 		else if(comparisonBox.getValue().equals(">")) {
 			abb.inOrderMore(abb.getRoot(),valueBox.getText());
+			generateSearchPlayers(abb);
 		}
 		else {
 			abb.inOrderLess(abb.getRoot(),valueBox.getText());
+			generateSearchPlayers(abb);
 		}
-		generateSearchPlayers(abb);
-	
 	}
 	
 	void verifyCriteria() {
@@ -223,7 +223,7 @@ public class Fiba_Controller {
 		while(columns != finishColum ) {
 		AVL<String, Integer> temp = new AVL<String,Integer>();
 		for(int i = 1;i<QUANTITY_DATA;i++) {
-			//temp.insert(values.get(i)[columns], i+1);
+			temp.insert(values.get(i)[columns], (i+1));
 		}
 		avls.add(temp);
 		columns++;
@@ -235,7 +235,7 @@ public class Fiba_Controller {
 		BST<String, Integer> temp = new BST<String,Integer>();
 		while(columns != finishColum ) {
 			for(int i = 1;i<QUANTITY_DATA;i++) {
-				temp.insertE(values.get(i)[columns], i+1);
+				temp.insertE(values.get(i)[columns], (i+1));
 				System.out.println(values.get(i)[columns]);
 			}
 			bst = temp;
@@ -248,7 +248,7 @@ public class Fiba_Controller {
 		while(columns != finishColum ) {
 			RBT<String, Integer> temp = new RBT<String,Integer>();
 			for(int i = 1;i<QUANTITY_DATA;i++) {
-				temp.insertNode(values.get(i)[columns], i+1);
+				temp.insertNode(values.get(i)[columns], (i+1));
 			}
 		rbts.add(temp);
 		columns++;
@@ -297,15 +297,30 @@ public class Fiba_Controller {
 		}
 		Player temp;
 		for(int i =0; i<abb.indices().size();i++) {
-		temp = new Player(allData.get(abb.indices().get(i))[0],allData.get(abb.indices().get(i))[1],allData.get(abb.indices().get(i))[2],
-						allData.get(abb.indices().get(i))[3],allData.get(abb.indices().get(i))[4],
-						allData.get(abb.indices().get(i))[5],allData.get(abb.indices().get(i))[6],
-						allData.get(abb.indices().get(i))[7],allData.get(abb.indices().get(i))[8]);
+		temp = new Player(allData.get(abb.indices().get(i)-1)[0],allData.get(abb.indices().get(i)-1)[1],allData.get(abb.indices().get(i)-1)[2],
+						allData.get(abb.indices().get(i)-1)[3],allData.get(abb.indices().get(i)-1)[4],
+						allData.get(abb.indices().get(i)-1)[5],allData.get(abb.indices().get(i)-1)[6],
+						allData.get(abb.indices().get(i)-1)[7],allData.get(abb.indices().get(i)-1)[8]);
+						
+						System.out.println("Indice : " + abb.indices().get(i));
+						System.out.println("Valor: " + allData.get(abb.indices().get(i)-1)[4]);
 						players.add(temp);
 			}
 	}
 	
-	
+	void generateBSTplayers(BST<String,Integer> abb) {
+		if(players.isEmpty() == false) {
+			  players.clear();
+			}
+		Player temp;
+		for(int i =0; i<abb.searchEquals(valueBox.getText()).size();i++) {
+		temp = new Player(allData.get(abb.searchEquals(valueBox.getText()).get(i)-1)[0],allData.get(abb.searchEquals(valueBox.getText()).get(i)-1)[1],allData.get(abb.searchEquals(valueBox.getText()).get(i)-1)[2],
+				allData.get(abb.searchEquals(valueBox.getText()).get(i)-1)[3],allData.get(abb.searchEquals(valueBox.getText()).get(i)-1)[4],
+				allData.get(abb.searchEquals(valueBox.getText()).get(i)-1)[5],allData.get(abb.searchEquals(valueBox.getText()).get(i)-1)[6],
+				allData.get(abb.searchEquals(valueBox.getText()).get(i)-1)[7],allData.get(abb.searchEquals(valueBox.getText()).get(i)-1)[8]);
+				players.add(temp);
+				}
+	}
 
 	public void loadPlayersList() {
     	basePane.setOnKeyPressed(null);
