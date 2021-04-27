@@ -43,7 +43,7 @@ public class Fiba_Controller {
 	private BST<String,Integer> bst;
 	private List<String[]> allData;
 	private ArrayList<Player> players;
-	private final int QUANTITY_DATA = 200;
+	private final int QUANTITY_DATA = 10;
 	
 	@FXML
 	private TableView<Player> tablePlayers;
@@ -143,6 +143,10 @@ public class Fiba_Controller {
 	}
 	
 	void verifyComparison(BST<String,Integer> abb) {
+		
+		//abb.inOrder(abb.getRoot());
+		
+		
 		if(comparisonBox.getValue().equals("=")){
 			abb.searchEquals(valueBox.getText());
 		}
@@ -153,6 +157,7 @@ public class Fiba_Controller {
 			abb.inOrderLess(abb.getRoot(),valueBox.getText());
 		}
 		generateSearchPlayers(abb);
+	
 	}
 	
 	void verifyCriteria() {
@@ -218,7 +223,7 @@ public class Fiba_Controller {
 		while(columns != finishColum ) {
 		AVL<String, Integer> temp = new AVL<String,Integer>();
 		for(int i = 1;i<QUANTITY_DATA;i++) {
-			temp.insert(values.get(i)[columns], i+1);
+			//temp.insert(values.get(i)[columns], i+1);
 		}
 		avls.add(temp);
 		columns++;
@@ -231,6 +236,7 @@ public class Fiba_Controller {
 		while(columns != finishColum ) {
 			for(int i = 1;i<QUANTITY_DATA;i++) {
 				temp.insertE(values.get(i)[columns], i+1);
+				System.out.println(values.get(i)[columns]);
 			}
 			bst = temp;
 			columns++;
