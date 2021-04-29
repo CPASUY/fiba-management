@@ -48,7 +48,7 @@ class BSTTest {
 	}	
 	
 	@Test
-	void test() {
+	void test1() {
 		setup1();
 		int key = 20;
 		int value = 1;
@@ -99,5 +99,15 @@ class BSTTest {
 		indices=bst.searchEquals(20);
 		assertEquals(1,indices.get(0),"It is null");
 		assertEquals(2,indices.get(1),"It is null");
+	}
+	@Test
+	void test5() {
+		setup5();
+		assertNotNull(bst.getRoot(),"it is null");
+		assertNotNull(bst.getRoot().getLeft().getFather(),"it is null");
+		assertEquals(bst.getRoot().getRight().getFather().getKey(),6);
+		assertNotNull(bst.getRoot().getRight().getRight(),"it is null");
+		assertNotNull(bst.searchEquals(6),"it is null");
+		assertNotNull(bst.searchEquals(1),"it is null");
 	}
 }
