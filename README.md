@@ -29,7 +29,7 @@ structure:<br>
  You can found the documention here:
 - [Engineering Method](docs/Engineering Method.pdf)
 
-- [Diagram Class](docs/Class Diagram1.JPG)
+- [Diagram Class](docs/Class Diagram1.jpg)
 
 - [Test Design](docs/Test Design.pdf)
 
