@@ -7,9 +7,6 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.List;
-
-
-import java.io.IOException;
 import java.util.ArrayList;
 
 
@@ -45,7 +42,7 @@ public class Fiba_Controller {
 	private BST<String,Integer> bst;
 	private List<String[]> allData;
 	private ArrayList<Player> players;
-	private final int QUANTITY_DATA = 20;
+	private final int QUANTITY_DATA = 200000;
 	
 	@FXML
 	private TableView<Player> tablePlayers;
