@@ -127,7 +127,6 @@ public class Fiba_Controller {
 		criteriaBox.setValue("Points");
 		comparisonBox.getItems().addAll("=",">","<");
 		comparisonBox.setValue("=");
-		chargePlayers();
 	}
 	public void loadBaseDeDatos(){
 		FXMLLoader fxmload = new FXMLLoader(getClass().getResource("BaseDeDatos.fxml"));
@@ -213,7 +212,6 @@ public class Fiba_Controller {
 	void returnSearch() {
 		players.clear();
 		loadBuscarJugadores();
-		players.clear();
 	}
 
 	void chargePlayers() {
