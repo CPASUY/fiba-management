@@ -19,10 +19,12 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.control.Alert;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
@@ -163,6 +165,12 @@ public class Fiba_Controller {
 			if(abb.searchEquals(valueBox.getText()) != null){
 				generateBSTplayers(abb);
 			}
+			else {
+				Alert alert = new Alert(AlertType.WARNING);
+				alert.setTitle("Players not found");
+				alert.setContentText("No players with those characteristics were found");
+				alert.showAndWait();
+			}
 		}
 		else if(comparisonBox.getValue().equals(">")) {
 			abb.inOrderMore(abb.getRoot(),valueBox.getText());
@@ -208,6 +216,7 @@ public class Fiba_Controller {
 	void returnSearch() {
 		players.clear();
 		loadBuscarJugadores();
+		players.clear();
 	}
 
 	void chargePlayers() {
@@ -336,8 +345,8 @@ public class Fiba_Controller {
 	}
 
 	public void loadPlayersList() {
-    	basePane.setOnKeyPressed(null);
-    	FXMLLoader fxmload = new FXMLLoader(getClass().getResource("BaseDeDatos.fxml"));
+		basePane.setOnKeyPressed(null);
+		FXMLLoader fxmload = new FXMLLoader(getClass().getResource("BaseDeDatos.fxml"));
 		fxmload.setController(this);
 		Parent root;
 		try {
@@ -348,17 +357,24 @@ public class Fiba_Controller {
 			e.printStackTrace();
 		}
 		tablePlayers.getItems().clear();
-		ObservableList<Player>list= FXCollections.observableArrayList(players);
-		tablePlayers.setItems(list);
-		
-		idName.setCellValueFactory(new PropertyValueFactory<Player,String>("name"));
-		idLastName.setCellValueFactory(new PropertyValueFactory<Player,String>("lastName"));
-		idAge.setCellValueFactory(new PropertyValueFactory<Player,String>("age"));
-		idTeam.setCellValueFactory(new PropertyValueFactory<Player,String>("team"));
-		idPoints.setCellValueFactory(new PropertyValueFactory<Player,String>("pointsPerGame"));
-		idRebounds.setCellValueFactory(new PropertyValueFactory<Player,String>("reboundsPerGame"));
-		idAssists.setCellValueFactory(new PropertyValueFactory<Player,String>("assistsPerGame"));
-		idRobberies.setCellValueFactory(new PropertyValueFactory<Player,String>("robberiesPerGame"));
-		idBlocks.setCellValueFactory(new PropertyValueFactory<Player,String>("blocksPerGame"));
+		if(players.isEmpty() ) {
+			Alert alert = new Alert(AlertType.WARNING);
+			alert.setTitle("Players not found");
+			alert.setContentText("No players with those characteristics were found");
+			alert.showAndWait();
+		}else {
+			ObservableList<Player>list= FXCollections.observableArrayList(players);
+			tablePlayers.setItems(list);
+
+			idName.setCellValueFactory(new PropertyValueFactory<Player,String>("name"));
+			idLastName.setCellValueFactory(new PropertyValueFactory<Player,String>("lastName"));
+			idAge.setCellValueFactory(new PropertyValueFactory<Player,String>("age"));
+			idTeam.setCellValueFactory(new PropertyValueFactory<Player,String>("team"));
+			idPoints.setCellValueFactory(new PropertyValueFactory<Player,String>("pointsPerGame"));
+			idRebounds.setCellValueFactory(new PropertyValueFactory<Player,String>("reboundsPerGame"));
+			idAssists.setCellValueFactory(new PropertyValueFactory<Player,String>("assistsPerGame"));
+			idRobberies.setCellValueFactory(new PropertyValueFactory<Player,String>("robberiesPerGame"));
+			idBlocks.setCellValueFactory(new PropertyValueFactory<Player,String>("blocksPerGame"));
+		}
 	}
 }
