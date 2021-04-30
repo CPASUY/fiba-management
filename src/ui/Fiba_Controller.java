@@ -7,9 +7,6 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.List;
-
-
-import java.io.IOException;
 import java.util.ArrayList;
 
 
@@ -45,7 +42,7 @@ public class Fiba_Controller {
 	private BST<String,Integer> bst;
 	private List<String[]> allData;
 	private ArrayList<Player> players;
-	private final int QUANTITY_DATA = 10;
+	private final int QUANTITY_DATA = 200000;
 	
 	@FXML
 	private TableView<Player> tablePlayers;
@@ -86,15 +83,25 @@ public class Fiba_Controller {
 	@FXML
 	private TextField valueBox;
 	
+	private long start;
+	
+	private long end;
+	
+	private long time;
+	
 
 	public Fiba_Controller(Stage s) throws IOException, CsvException {
 		stage=s;
 		avls = new ArrayList<AVL<String,Integer>>();
 		rbts = new ArrayList<RBT<String,Integer>>();
 		bst = null;
+		start=0;
+		end = 0;
+		time = 0;
 		players = new ArrayList<Player>();
 		allData = null;
 	}
+	
 	public void initialize() {
 		stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
 			
@@ -139,8 +146,12 @@ public class Fiba_Controller {
 	@FXML
 	void search(){
 		if(valueBox.getText() != null && valueBox.getText().trim().isEmpty() == false) {
+			start = System.currentTimeMillis();
 			verifyCriteria();
+			end = System.currentTimeMillis();
+			time = end-start;
 			loadBaseDeDatos();
+			System.out.println("THE TIME OF THE SEARCH IN MILISECONDS IS : " + time);
 		}
 	}
 
@@ -200,6 +211,7 @@ public class Fiba_Controller {
 	
 	@FXML
 	void returnSearch() {
+		players.clear();
 		loadBuscarJugadores();
 		players.clear();
 	}
