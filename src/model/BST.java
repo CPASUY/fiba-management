@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class BST<K extends Comparable<K>,V> implements IBST<K,V>{
 	private int weight;
 	ArrayList <Node<K,V>> nodos;
-
+	HashTable<K, V> s;
 	protected Node<K,V> root;
 	
 	public BST() {
