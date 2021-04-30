@@ -28,8 +28,11 @@ structure:<br>
  <br>
  You can found the documention here:
 - [Engineering Method](docs/EngineeringMethod.pdf)
-- [Diagram Class](docs/DiagramClass1.JPG)
+
+- [Diagram Class](docs/ClassDiagram1.jpg)
+
 - [Test Design](docs/TestDesign.pdf)
+
 - [TADS](docs/TADS.pdf)
 <br>
 <em>This project implements:<br>
