@@ -314,11 +314,11 @@ public class Fiba_Controller {
 		  players.clear();
 		}
 		Player temp;
-		for(int i =0; i<abb.indices().size();i++) {
-		temp = new Player(allData.get(abb.indices().get(i)-1)[0],allData.get(abb.indices().get(i)-1)[1],allData.get(abb.indices().get(i)-1)[2],
-						allData.get(abb.indices().get(i)-1)[3],allData.get(abb.indices().get(i)-1)[4],
-						allData.get(abb.indices().get(i)-1)[5],allData.get(abb.indices().get(i)-1)[6],
-						allData.get(abb.indices().get(i)-1)[7],allData.get(abb.indices().get(i)-1)[8]);
+		for(int i =0; i<abb.getList().size();i++) {
+		temp = new Player(allData.get(abb.getList().get(i)-1)[0],allData.get(abb.getList().get(i)-1)[1],allData.get(abb.getList().get(i)-1)[2],
+						allData.get(abb.getList().get(i)-1)[3],allData.get(abb.getList().get(i)-1)[4],
+						allData.get(abb.getList().get(i)-1)[5],allData.get(abb.getList().get(i)-1)[6],
+						allData.get(abb.getList().get(i)-1)[7],allData.get(abb.getList().get(i)-1)[8]);
 						players.add(temp);
 			}
 		abb.eraseNodes();
@@ -327,15 +327,17 @@ public class Fiba_Controller {
 	void generateBSTplayers(BST<String,Integer> abb) {
 		if(players.isEmpty() == false) {
 			  players.clear();
-			}
+		}
+		ArrayList<Integer> teams=new ArrayList<Integer>();
+		teams=abb.searchEquals(valueBox.getText());
 		Player temp;
-		for(int i =0; i<abb.searchEquals(valueBox.getText()).size();i++) {
-		temp = new Player(allData.get(abb.searchEquals(valueBox.getText()).get(i)-1)[0],allData.get(abb.searchEquals(valueBox.getText()).get(i)-1)[1],allData.get(abb.searchEquals(valueBox.getText()).get(i)-1)[2],
-				allData.get(abb.searchEquals(valueBox.getText()).get(i)-1)[3],allData.get(abb.searchEquals(valueBox.getText()).get(i)-1)[4],
-				allData.get(abb.searchEquals(valueBox.getText()).get(i)-1)[5],allData.get(abb.searchEquals(valueBox.getText()).get(i)-1)[6],
-				allData.get(abb.searchEquals(valueBox.getText()).get(i)-1)[7],allData.get(abb.searchEquals(valueBox.getText()).get(i)-1)[8]);
+		for(int i =0; i<teams.size();i++) {
+		temp = new Player(allData.get(abb.searchEquals(valueBox.getText()).get(i)-1)[0],allData.get(teams.get(i)-1)[1],allData.get(teams.get(i)-1)[2],
+				allData.get(teams.get(i)-1)[3],allData.get(teams.get(i)-1)[4],
+				allData.get(teams.get(i)-1)[5],allData.get(teams.get(i)-1)[6],
+				allData.get(teams.get(i)-1)[7],allData.get(teams.get(i)-1)[8]);
 				players.add(temp);
-				}
+		}
 	abb.eraseNodes();
 	}
 

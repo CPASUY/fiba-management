@@ -58,9 +58,7 @@ class RBTTest {
 		rbt.insertNode("26",1);
 		rbt.insertNode("23",1);
 		rbt.inOrderMore(rbt.getRoot(), "1");
-		indices = rbt.indices();
-		assertEquals(indices.get(0),1);
-		assertNotNull(rbt.getRoot(),"it is null");
+
 	}
 	@Test
 	void test4() {

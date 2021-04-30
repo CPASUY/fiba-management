@@ -11,5 +11,4 @@ public interface IBST<K extends Comparable<K>,V> {
 	public Node<K,V>  searchEquals(K key,Node <K,V> n);
 	public void inOrderLess(Node <K,V> node,K key);
 	public void inOrderMore(Node <K,V> node,K key);
-	public ArrayList<V> indices();
 }

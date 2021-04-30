@@ -4,14 +4,16 @@ import java.util.ArrayList;
 
 public class BST<K extends Comparable<K>,V> implements IBST<K,V>{
 	private int weight;
-	ArrayList <Node<K,V>> nodos;
-	HashTable<K, V> s;
+	private ArrayList<V> list;
 	protected Node<K,V> root;
 	
 	public BST() {
 		weight=0;
 		root=null;
-		nodos=new ArrayList<Node<K,V>>();
+		list=new ArrayList<V>();
+	}
+	public ArrayList<V> getList() {
+		return list;
 	}
 	public int getWeight() {
 		return weight;
@@ -104,7 +106,7 @@ public class BST<K extends Comparable<K>,V> implements IBST<K,V>{
 		if (node != null) {
 			inOrderLess(node.getRight(),key);
 			if(Integer.valueOf((String) node.getKey()) < Integer.valueOf((String) key)) {
-				nodos.add(node);
+				list.addAll(node.getValue());
 			}
 			inOrderLess(node.getLeft(),key);
 		}
@@ -114,25 +116,13 @@ public class BST<K extends Comparable<K>,V> implements IBST<K,V>{
 		if (node != null) {
 			inOrderMore(node.getRight(),key);
 			if(Integer.valueOf((String) node.getKey())>Integer.valueOf((String) key)) {
-				nodos.add(node);
+				list.addAll(node.getValue());
 			}
 			inOrderMore(node.getLeft(),key);
 		}
 	}
 	
-	
-	@Override
-	public ArrayList<V> indices(){
-		ArrayList<V> indices=new ArrayList<V>();
-		for(int s=0;s<nodos.size();s++) {
-			for(int m=0;m<nodos.get(s).getValue().size();m++) {
-				indices.add(nodos.get(s).getValue().get(m));
-			}
-		}
-		return indices;
-	}
-	
 	public void eraseNodes(){
-		nodos.clear();
+		list.clear();
 	}
 }
