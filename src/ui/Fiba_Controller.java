@@ -6,10 +6,7 @@ import com.opencsv.exceptions.CsvException;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.List;
 import java.util.ArrayList;
-
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
@@ -40,7 +37,7 @@ public class Fiba_Controller {
 	private ArrayList<AVL<String,Integer>>avls;
 	private ArrayList<RBT<String,Integer>>rbts;
 	private BST<String,Integer> bst;
-	private List<String[]> allData;
+	private ArrayList<String[]> allData;
 	private ArrayList<Player> players;
 	private final int QUANTITY_DATA = 200000;
 	
@@ -99,7 +96,7 @@ public class Fiba_Controller {
 		end = 0;
 		time = 0;
 		players = new ArrayList<Player>();
-		allData = null;
+		allData = new ArrayList<String[]>();
 	}
 	
 	public void initialize() {
@@ -223,9 +220,12 @@ public class Fiba_Controller {
 		}
 		CSVParser parser = new CSVParserBuilder().withSeparator(',').build();
 		CSVReader csvReader = new CSVReaderBuilder(filereader).withCSVParser(parser).build();
+        String[] row;
 		try {
-			allData = csvReader.readAll();
-		} catch (IOException e) {
+			while ((row = csvReader.readNext()) != null) {
+	           allData.add(row);
+		}
+		}catch (IOException e) {
 			
 			e.printStackTrace();
 		} catch (CsvException e) {
@@ -235,7 +235,7 @@ public class Fiba_Controller {
 		fillData(allData);
 	}
 	
-	void fillData(List<String[]> values) {
+	void fillData(ArrayList<String[]> values) {
 		BST<String, Integer> temp = new BST<String,Integer>();
 		AVL<String, Integer> temp1 = new AVL<String,Integer>();
 		AVL<String, Integer> temp2= new AVL<String,Integer>();
@@ -344,7 +344,6 @@ public class Fiba_Controller {
 		}else {
 			ObservableList<Player>list= FXCollections.observableArrayList(players);
 			tablePlayers.setItems(list);
-
 			idName.setCellValueFactory(new PropertyValueFactory<Player,String>("name"));
 			idLastName.setCellValueFactory(new PropertyValueFactory<Player,String>("lastName"));
 			idAge.setCellValueFactory(new PropertyValueFactory<Player,String>("age"));
