@@ -27,9 +27,9 @@ structure:<br>
         ➝ Blocks<br>
  <br>
  You can found the documention here:
-- [Engineering Method](docs/EngineeringMethod.pdf)
-- [Diagram Class](docs/DiagramClass1.JPG)
-- [Test Design](docs/TestDesign.pdf)
+- [Engineering Method](docs/Engineering Method.pdf)
+- [Diagram Class](docs/Class Diagram1.JPG)
+- [Test Design](docs/Test Design.pdf)
 - [TADS](docs/TADS.pdf)
 <br>
 <em>This project implements:<br>
