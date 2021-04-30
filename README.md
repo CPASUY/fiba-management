@@ -27,11 +27,11 @@ structure:<br>
         ➝ Blocks<br>
  <br>
  You can found the documention here:
-- [Engineering Method](docs/Engineering Method.pdf)
+- [Engineering Method](docs/EngineeringMethod.pdf)
 
-- [Diagram Class](docs/Class Diagram1.jpg)
+- [Diagram Class](docs/ClassDiagram1.jpg)
 
-- [Test Design](docs/Test Design.pdf)
+- [Test Design](docs/TestDesign.pdf)
 
 - [TADS](docs/TADS.pdf)
 <br>
