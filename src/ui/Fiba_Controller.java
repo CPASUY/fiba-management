@@ -232,45 +232,27 @@ public class Fiba_Controller {
 			
 			e.printStackTrace();
 		}
-		fillAVL(allData,4,6);
-		fillBST(allData,6,7);
-		fillRBT(allData,7,9);
+		fillData(allData);
 	}
 	
-	void fillAVL(List<String[]> values,int startColum,int finishColum) {
-		int columns = startColum;
-		while(columns != finishColum ) {
-		AVL<String, Integer> temp = new AVL<String,Integer>();
-		for(int i = 1;i<QUANTITY_DATA;i++) {
-			temp.insert(values.get(i)[columns], i+1);
-		}
-		avls.add(temp);
-		columns++;
-		}
-	}
-	
-	void fillBST(List<String[]> values,int startColum,int finishColum) {
-		int columns = startColum;
+	void fillData(List<String[]> values) {
 		BST<String, Integer> temp = new BST<String,Integer>();
-		while(columns != finishColum ) {
-			for(int i = 1;i<QUANTITY_DATA;i++) {
-				temp.insertE(values.get(i)[columns], i+1);
-			}
-			bst = temp;
-			columns++;
+		AVL<String, Integer> temp1 = new AVL<String,Integer>();
+		AVL<String, Integer> temp2= new AVL<String,Integer>();
+		RBT<String, Integer> temp3 = new RBT<String,Integer>();
+		RBT<String, Integer> temp4 = new RBT<String,Integer>();
+		for(int i = 1;i<QUANTITY_DATA;i++) {
+			temp1.insert(values.get(i)[4], i+1);
+			temp2.insert(values.get(i)[5], i+1);
+			temp.insertE(values.get(i)[6], i+1);
+			temp3.insertNode(values.get(i)[7], i+1);
+			temp4.insertNode(values.get(i)[8], (i+1));
 		}
-	}
-	
-	void fillRBT(List<String[]> values,int startColum,int finishColum) {
-		int columns = startColum;
-		while(columns != finishColum ) {
-			RBT<String, Integer> temp = new RBT<String,Integer>();
-			for(int i = 1;i<QUANTITY_DATA;i++) {
-				temp.insertNode(values.get(i)[columns], (i+1));
-			}
-		rbts.add(temp);
-		columns++;
-		}
+		bst = temp;
+		avls.add(temp1);
+		avls.add(temp2);
+		rbts.add(temp3);
+		rbts.add(temp4);
 	}
 	
 	void linealSearch(String v,String search) {
