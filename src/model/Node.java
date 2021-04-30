@@ -11,6 +11,8 @@ public class Node<K extends Comparable <K>,V>  {
 	protected int height;
 	private int h1;
 	private int h2;
+	private Node<K,V> prev;
+	private Node<K,V> next;
 	
 	public Node(K k, V v) {
 		super();
@@ -82,6 +84,18 @@ public class Node<K extends Comparable <K>,V>  {
 	}
 	public int getBFactor() {
 		return h2-h1;
+	}
+	public Node<K,V> getPrev() {
+		return prev;
+	}
+	public void setPrev(Node<K,V> prev) {
+		this.prev = prev;
+	}
+	public Node<K,V> getNext() {
+		return next;
+	}
+	public void setNext(Node<K,V> next) {
+		this.next = next;
 	}
 		
 }

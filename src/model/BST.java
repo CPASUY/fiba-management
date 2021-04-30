@@ -4,7 +4,11 @@ import java.util.ArrayList;
 
 public class BST<K extends Comparable<K>,V> implements IBST<K,V>{
 	private int weight;
+<<<<<<< HEAD
 	private ArrayList<V> list;
+=======
+	ArrayList <Node<K,V>> nodos;
+>>>>>>> 98458397edd1273f11e6f15bc934ce405fcb9387
 	protected Node<K,V> root;
 	
 	public BST() {
